@@ -119,8 +119,8 @@ const AboutUs = () => {
                   </MuiLink>
                   , we believe in the power of heartfelt connections. Our mission is to bring joy, love,
                   and warmth through beautifully crafted greeting cards for every occasion.
-                  Whether you're celebrating a birthday, anniversary, or simply want to say "thank
-                  you", our designs speak from the heart. Each card is thoughtfully created with
+                  Whether you&apos;re celebrating a birthday, anniversary, or simply want to say &quot;thank
+                  you&quot;, our designs speak from the heart. Each card is thoughtfully created with
                   unique artwork and meaningful messages. We value creativity, quality, and personal touch.
                 </Typography>
               </Box>
@@ -255,8 +255,8 @@ const AboutUs = () => {
                   </MuiLink>
                   , we believe in the power of heartfelt connections. Our mission is to bring joy, love,
                   and warmth through beautifully crafted greeting cards for every occasion.
-                  Whether you're celebrating a birthday, anniversary, or simply want to say "thank
-                  you", our designs speak from the heart. Each card is thoughtfully created with
+                  Whether you&apos;re celebrating a birthday, anniversary, or simply want to say &quot;thank
+                  you&quot;, our designs speak from the heart. Each card is thoughtfully created with
                   unique artwork and meaningful messages. We value creativity, quality, and personal touch.
                 </Typography>
               </Box>
@@ -379,8 +379,8 @@ const AboutUs = () => {
                   </MuiLink>
                   , we believe in the power of heartfelt connections. Our mission is to bring joy, love,
                   and warmth through beautifully crafted greeting cards for every occasion.
-                  Whether you're celebrating a birthday, anniversary, or simply want to say "thank
-                  you", our designs speak from the heart. Each card is thoughtfully created with
+                  Whether you&apos;re celebrating a birthday, anniversary, or simply want to say &quot;thank
+                  you&quot;, our designs speak from the heart. Each card is thoughtfully created with
                   unique artwork and meaningful messages. We value creativity, quality, and personal touch.
                 </Typography>
               </Box>

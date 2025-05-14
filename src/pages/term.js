@@ -95,7 +95,7 @@ const Page = () => {
                   5. Warranty
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  5.1 All products are provided "as is" without any warranty of any kind, express or
+                  5.1 All products are provided &quot;as is&quot; without any warranty of any kind, express or
                   implied.
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
