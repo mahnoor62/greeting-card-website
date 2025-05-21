@@ -86,7 +86,10 @@ const Page = () => {
         height: '100%',
         minHeight: '100vh',
         // bgcolor:'#eee3ea',
-        backgroundImage: `url(${WEB_URL}/bg1.png)`,
+        backgroundImage: {
+          xs: `url(${WEB_URL}/portrate.png)`,
+          md: `url(${WEB_URL}/bg1.png)`,
+        },
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'

@@ -326,7 +326,7 @@ const PopularCards = () => {
           width: '100%',
           height:'100%',
           // minHeight: '100vh',
-          bgcolor: 'black',
+          backgroundColor: '#1a1d25 !important',
           pl: '3%',
           pr: '3%',
           display: 'flex',
@@ -401,6 +401,7 @@ const PopularCards = () => {
             autoplay={{ delay: 1500 }}
             loop={true}
             breakpoints={{
+              375:{slidesPerView: 2},
               640: { slidesPerView: 3 },
               768: { slidesPerView: 3 },
               1024: { slidesPerView: 4 },

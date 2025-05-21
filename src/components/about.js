@@ -38,6 +38,7 @@ const AboutUs = () => {
 
         sx={{
           overflowX: 'hidden',
+          overflowY: 'hidden',
           position: 'relative',
           width: '100%',
           height: {md: '100%', xs:'100%' },

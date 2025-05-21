@@ -65,6 +65,7 @@ const Clients = () => {
         sx={{
           overflowX: 'hidden',
           width: '100%',
+          overflowY: 'hidden',
           height:'100%',
           // height: {md: '100vh', xs:'100%' },
           // minHeight: '100vh',

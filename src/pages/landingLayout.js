@@ -54,26 +54,27 @@ export const LandingNav = () => {
         component="header"
         sx={{
           // bgcolor:'#d8c0ca',
-          bgcolor: 'transparent  !important',
+          backgroundColor: '#1a1d25 !important',
           // boxShadow: 'none',
           zIndex: (theme) => theme.zIndex.appBar,
           width: '100% !important',
           position: 'sticky',
-          pt:0,
-          top: 0,}}
+          pt: 0,
+          top: 0
+        }}
       >
         {lgUp ? (
-          <Box sx={{ width: '100% !important'}}>
+          <Box sx={{ width: '100% !important' }}>
             <Box
               sx={{
-                 // bgcolor:'yellow',
+                // bgcolor:'yellow',
                 display: 'flex',
                 pl: '3%',
                 pr: '3%',
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 width: '100% !important',
-                backgroundColor: '#1a1d25 !important',
+                backgroundColor: '#1a1d25 !important'
               }}
             >
               <Box
@@ -84,10 +85,10 @@ export const LandingNav = () => {
                   width: {
                     xs: '10%',
                     md: '10%',
-                    lg: '10%',
+                    lg: '10%'
                   },
                   pb: 2,
-                  height: 'auto',
+                  height: 'auto'
                 }}
               />
               <Typography
@@ -98,15 +99,15 @@ export const LandingNav = () => {
                   // bgcolor:'red',
                   textAlign: 'center',
                   fontWeight: 900,
-                  pt:1,
-                  ml:10,
-                  color: '#c09b9b',
+                  pt: 1,
+                  ml: 10,
+                  color: '#c09b9b'
                 }}
               >
                 Greetings Card
               </Typography>
-              <Box sx={{ display: 'flex', justifyContent: 'center', gap:2,alignItems: 'center' }}>
-                <NextLink  href="#contact" passHref scroll={true}>
+              <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, alignItems: 'center' }}>
+                <NextLink href="#contact" passHref scroll={true}>
                   <Button
                     variant="outlined"
                     sx={{
@@ -115,8 +116,8 @@ export const LandingNav = () => {
                       color: '#dcdbdb', // Optional: button text color same as border
                       '&:hover': {
                         borderColor: '#dcdbdb', // Keeps same color on hover
-                        backgroundColor: 'rgba(220, 219, 219, 0.1)', // Optional subtle hover
-                      },
+                        backgroundColor: 'rgba(220, 219, 219, 0.1)' // Optional subtle hover
+                      }
                     }}
                   >
                     Contact Us
@@ -124,16 +125,16 @@ export const LandingNav = () => {
 
                 </NextLink>
                 {/*<NextLink href="/login">*/}
-                  <Button
-                    sx={{
-                      px:3,
-                      borderRadius: '20px !important',
-                      backgroundColor: '#c165a0',
-                      color: 'white',
-                    }}
-                  >
-                    Log In
-                  </Button>
+                <Button
+                  sx={{
+                    px: 3,
+                    borderRadius: '20px !important',
+                    backgroundColor: '#c165a0',
+                    color: 'white'
+                  }}
+                >
+                  Log In
+                </Button>
                 {/*</NextLink>*/}
               </Box>
             </Box>
@@ -143,11 +144,13 @@ export const LandingNav = () => {
             onClick={toggleDrawer(true)}
             sx={{
               pl: 2,
-              backgroundColor: 'transparent !important',
+              width:'100%',
+              display: 'flex',
+              justifyContent:'flex-end'
             }}
           >
-            <SvgIcon fontSize="large"  >
-              <Bars3Icon  />
+            <SvgIcon fontSize="large" sx={{ alignText: 'right' }}>
+              <Bars3Icon/>
             </SvgIcon>
           </IconButton>
         )}
@@ -158,7 +161,7 @@ export const LandingNav = () => {
             '& .MuiDrawer-paper': {
               // bgcolor: '#d8c0ca',
               backgroundColor: '#1a1d25 !important'
-            },
+            }
           }}
           open={open}
           onClose={toggleDrawer(false)}
@@ -169,7 +172,7 @@ export const LandingNav = () => {
             onClick={toggleDrawer(false)}
             onKeyDown={toggleDrawer(false)}
           >
-            <img src={`${WEB_URL}/logo3.png`} alt="Logo" style={{ height: 50, marginTop: '20px' }} />
+            <img src={`${WEB_URL}/logo3.png`} alt="Logo" style={{ height: 50, marginTop: '20px' }}/>
             <Box
               sx={{
                 mt: 5,
@@ -177,10 +180,10 @@ export const LandingNav = () => {
                 display: 'flex',
                 justifyContent: 'center',
                 gap: 2,
-                flexDirection: 'column',
+                flexDirection: 'column'
               }}
             >
-              <NextLink  href="#contact" passHref scroll={true}>
+              <NextLink href="#contact" passHref scroll={true}>
                 <Button
                   variant="outlined"
                   sx={{
@@ -190,24 +193,24 @@ export const LandingNav = () => {
                     color: '#dcdbdb', // Optional: button text color same as border
                     '&:hover': {
                       borderColor: '#dcdbdb', // Keeps same color on hover
-                      backgroundColor: 'rgba(220, 219, 219, 0.1)', // Optional subtle hover
-                    },
+                      backgroundColor: 'rgba(220, 219, 219, 0.1)' // Optional subtle hover
+                    }
                   }}
                 >
                   Contact Us
                 </Button>
               </NextLink>
               {/*<NextLink href="/login">*/}
-                <Button
-                  sx={{
-                    px:3,
-                    borderRadius: '20px !important',
-                    backgroundColor: '#c165a0',
-                    color: 'white',
-                  }}
-                >
-                  Log In
-                </Button>
+              <Button
+                sx={{
+                  px: 3,
+                  borderRadius: '20px !important',
+                  backgroundColor: '#c165a0',
+                  color: 'white'
+                }}
+              >
+                Log In
+              </Button>
               {/*</NextLink>*/}
             </Box>
           </Box>
