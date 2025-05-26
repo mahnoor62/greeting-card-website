@@ -26,11 +26,13 @@ const Page = () => {
   const theme = useTheme();
 
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down('mobile'));
+  const islargeLaptop = useMediaQuery((theme) => theme.breakpoints.only('largeLaptop'));
   const isIpadScreen = useMediaQuery((theme) => theme.breakpoints.between('ipad', 'ipadPro'));
   // const isIpadScreen = useMediaQuery((theme) => theme.breakpoints.only('ipad'));
   const isLargeScreen = useMediaQuery((theme) => theme.breakpoints.up('large'));
   const isLaptopScreen = useMediaQuery((theme) => theme.breakpoints.up('laptop'));
   const isXXlUp = useMediaQuery((theme) => theme.breakpoints.up('xxl'));
+  const is4KUp = useMediaQuery((theme) => theme.breakpoints.up('4k'));
   // const isExtraLargeScreen = useMediaQuery((theme) => theme.breakpoints.up('xxl'));
   const isIpadPro = useMediaQuery(theme.breakpoints.only('ipadPro'));  // const largeScreen = useMediaQuery(theme.breakpoints.up('xl'));
   const extraLargeScreen = useMediaQuery(theme.breakpoints.up('xxl'));
@@ -42,6 +44,11 @@ const Page = () => {
 
   const WEB_URL = process.env.NEXT_PUBLIC_WEB_URL;
   const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME;
+
+  console.log('Width:', window.innerWidth);
+  console.log('Height:', window.innerHeight);
+
+
 
   return (
     <>
@@ -71,23 +78,23 @@ const Page = () => {
           // data-aos-easing="ease-in"
           sx={{ position: 'relative', width: '100%', height: '100%' }}>
 
-          <Box
-            component="img"
-            src={`${WEB_URL}/laptop2.png`}
-            alt="laptop"
-            sx={{
-              width: { md: '90%', xs: '70%', ipadPro: '70%' },
+          {/*<Box*/}
+          {/*  component="img"*/}
+          {/*  src={`${WEB_URL}/laptop2.png`}*/}
+          {/*  alt="laptop"*/}
+          {/*  sx={{*/}
+          {/*    width: {md:'100%', xs: '70%', ipadPro: '70%' },*/}
 
-              // width: { xl: '100%', lg: '70%', xs:'70%' , ipad:'60%', ipadPro:'65%'},
-              // display: 'block',
-              position: 'absolute',
-              // height:'100%',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              zIndex: 9
-            }}
-          />
+          {/*    // width: { xl: '100%', lg: '70%', xs:'70%' , ipad:'60%', ipadPro:'65%'},*/}
+          {/*    // display: 'block',*/}
+          {/*    position: 'absolute',*/}
+          {/*    // height:'100%',*/}
+          {/*    top: '50%',*/}
+          {/*    left: '50%',*/}
+          {/*    transform: 'translate(-50%, -50%)',*/}
+          {/*    zIndex: 9*/}
+          {/*  }}*/}
+          {/*/>*/}
 
 
 
@@ -130,6 +137,23 @@ const Page = () => {
           {
           (isMobile || isLaptopScreen) &&  !isXXlUp &&   (
               <>
+                <Box
+                  component="img"
+                  src={`${WEB_URL}/laptop2.png`}
+                  alt="laptop"
+                  sx={{
+                    width: {md:'100%', xs: '70%', ipadPro: '70%' },
+
+                    // width: { xl: '100%', lg: '70%', xs:'70%' , ipad:'60%', ipadPro:'65%'},
+                    // display: 'block',
+                    position: 'absolute',
+                    // height:'100%',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    zIndex: 9
+                  }}
+                />
                 <Box
                   component="img"
                   src={`${WEB_URL}/butterfly.png`}
@@ -264,7 +288,7 @@ const Page = () => {
                       // ipadPro:'34%',
                       // ipad:'33%',
                       // isIpadScreen:'100%',
-                      laptop: '10%', // 👈 for normal laptops
+                      laptop: '13%', // 👈 for normal laptops
                       large: '13%',
                       // xl: '33%'
                     },
@@ -349,7 +373,7 @@ const Page = () => {
 
 
           {
-            isLargeScreen &&  !isXXlUp && (
+            isLargeScreen &&  !isXXlUp  && (
 
               <Box
                 component="img"
@@ -357,8 +381,9 @@ const Page = () => {
                 alt="mobile side"
                 sx={{
                   position: 'absolute',
-                  bottom: '20%',
-                  right: '-1%',
+                  // bottom: islargeLaptop? '23%': '20%' ,
+                  bottom: '20%' ,
+                  right: '-2%',
                   width: '17%',
                   transform: 'translateY(10%)',
                   zIndex: 5
@@ -367,8 +392,46 @@ const Page = () => {
             )
           }
 
+
+          {/*{*/}
+          {/* islargeLaptop && (*/}
+
+          {/*    <Box*/}
+          {/*      component="img"*/}
+          {/*      src={`${WEB_URL}/mobile.png`}*/}
+          {/*      alt="mobile side"*/}
+          {/*      sx={{*/}
+          {/*        position: 'absolute',*/}
+          {/*        bottom: '20%',*/}
+          {/*        right: '-1%',*/}
+          {/*        width: '17%',*/}
+          {/*        transform: 'translateY(10%)',*/}
+          {/*        zIndex: 5*/}
+          {/*      }}*/}
+          {/*    />*/}
+          {/*  )*/}
+          {/*}*/}
+
           {
           isIpadScreen && (<>
+
+                <Box
+                  component="img"
+                  src={`${WEB_URL}/laptop2.png`}
+                  alt="laptop"
+                  sx={{
+                    width: {md:'100%', xs: '70%', ipadPro: '70%' },
+
+                    // width: { xl: '100%', lg: '70%', xs:'70%' , ipad:'60%', ipadPro:'65%'},
+                    // display: 'block',
+                    position: 'absolute',
+                    // height:'100%',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    zIndex: 9
+                  }}
+                />
               <Box
                 component="iframe"
                 src="https://www.youtube.com/embed/w0HuAGCryIw?si=DgIa1dWVbF5FpX8y"
@@ -480,6 +543,23 @@ const Page = () => {
           {
             isIpadPro && (<>
                 <Box
+                  component="img"
+                  src={`${WEB_URL}/laptop2.png`}
+                  alt="laptop"
+                  sx={{
+                    width: {md:'100%', xs: '70%', ipadPro: '70%' },
+
+                    // width: { xl: '100%', lg: '70%', xs:'70%' , ipad:'60%', ipadPro:'65%'},
+                    // display: 'block',
+                    position: 'absolute',
+                    // height:'100%',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    zIndex: 9
+                  }}
+                />
+                <Box
                   component="iframe"
                   src="https://www.youtube.com/embed/w0HuAGCryIw?si=DgIa1dWVbF5FpX8y"
                   allow="autoplay; encrypted-media"
@@ -585,8 +665,25 @@ const Page = () => {
 
 
           {
-          isXXlUp &&   (
+          isXXlUp &&   !is4KUp &&  (
               <>
+                <Box
+                  component="img"
+                  src={`${WEB_URL}/laptop2.png`}
+                  alt="laptop"
+                  sx={{
+                    // width: {md:'100%', xs: '70%', ipadPro: '70%' },
+
+                    // width: { xl: '100%', lg: '70%', xs:'70%' , ipad:'60%', ipadPro:'65%'},
+                    // display: 'block',
+                    position: 'absolute',
+                    // height:'100%',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    zIndex: 9
+                  }}
+                />
                 <Box
                   component="iframe"
                   src="https://www.youtube.com/embed/w0HuAGCryIw?si=DgIa1dWVbF5FpX8y"
@@ -599,9 +696,9 @@ const Page = () => {
                     top: '49.5%',
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
-                    width: '55%',
+                    width: '75%',
                     // height: { xs: '130px', sm: '400px', md: '571px', xl: '570px'
-                    height: '440px', // ✅ custom heights
+                    height: '550px', // ✅ custom heights
                     zIndex: 10,
                     border: 'none'
                   }}
@@ -612,8 +709,8 @@ const Page = () => {
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    right: '-20%',
-                    top: '35%',
+                    right: '-30%',
+                    top: '30%',
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
                     width: '50%',
@@ -626,8 +723,8 @@ const Page = () => {
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    left: '24%',
-                    top: '35%',
+                    left: '15%',
+                    top: '30%',
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
                     width: '30%',
@@ -641,8 +738,8 @@ const Page = () => {
                   alt="mac side"
                   sx={{
                     position: 'absolute',
-                    bottom: '50%',
-                    right: '-1%',
+                    bottom: '40%',
+                    right: '-10%',
                     width: '27%',
                     transform: 'translateY(100%)',
                     zIndex: 5
@@ -655,9 +752,139 @@ const Page = () => {
                   alt="mobile side"
                   sx={{
                     position: 'absolute',
-                    bottom: '27%',
-                    right: '0.5%',
+                    bottom: '17%',
+                    right: '-10%',
                     width: '16%',
+                    transform: 'translateY(90%)',
+                    // transform: 'translateY(10%)',
+                    zIndex: 5
+                  }}
+                />
+
+                <Box
+                  component="img"
+                  src={`${WEB_URL}/card.png`}
+                  alt="card"
+                  sx={{
+                    position: 'absolute',
+                    bottom: '45%',
+                    left: '-14%',
+                    width: '30%',
+                    transform: 'translateY(86%)',
+                    zIndex: 4
+                  }}
+                />
+                <Box
+                  component="img"
+                  src={`${WEB_URL}/cardBaloons.png`}
+                  alt="card"
+                  sx={{
+                    position: 'absolute',
+                    bottom: '47%',
+                    left: '-12%',
+                    width: '22%',
+                    transform: 'translateY(86%)',
+                    zIndex: 4
+                  }}
+                />
+
+              </>
+            )
+          }
+
+
+          {
+            is4KUp &&  (
+              <>
+                <Box
+                  component="img"
+                  src={`${WEB_URL}/laptop2.png`}
+                  alt="laptop"
+                  sx={{
+                    // width: {md:'100%', xs: '70%', ipadPro: '70%' },
+
+                    // width: { xl: '100%', lg: '70%', xs:'70%' , ipad:'60%', ipadPro:'65%'},
+                    // display: 'block',
+                    position: 'absolute',
+                    // height:'100%',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    zIndex: 9
+                  }}
+                />
+                <Box
+                  component="iframe"
+                  src="https://www.youtube.com/embed/w0HuAGCryIw?si=DgIa1dWVbF5FpX8y"
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                  sx={{
+                    position: 'absolute',
+                    borderRadius: '10px',
+                    left: '50%',
+                    top: '49.5%',
+                    transform: 'translate(-50%, -50%)',
+                    // width: { xl: '70%', lg: '71%', xs: '55%'
+                    width: '75%',
+                    // height: { xs: '130px', sm: '400px', md: '571px', xl: '570px'
+                    height: '550px', // ✅ custom heights
+                    zIndex: 10,
+                    border: 'none'
+                  }}
+                />
+                <Box
+                  component="img"
+                  src={`${WEB_URL}/butterfly.png`}
+                  alt="card"
+                  sx={{
+                    position: 'absolute',
+                    right: '-30%',
+                    top: '30%',
+                    transform: 'translate(-50%, -50%)',
+                    // width: { xl: '70%', lg: '71%', xs: '55%'
+                    width: '50%',
+                    zIndex: 11,
+                  }}
+                />
+                <Box
+                  component="img"
+                  src={`${WEB_URL}/heart.png`}
+                  alt="card"
+                  sx={{
+                    position: 'absolute',
+                    left: '15%',
+                    top: '30%',
+                    transform: 'translate(-50%, -50%)',
+                    // width: { xl: '70%', lg: '71%', xs: '55%'
+                    width: '30%',
+                    zIndex: 11,
+                  }}
+                />
+                {/* Bottom Right - Mac */}
+                <Box
+                  component="img"
+                  src={`${WEB_URL}/mack.png`}
+                  alt="mac side"
+                  sx={{
+                    position: 'absolute',
+                    bottom: '40%',
+                    right: '-10%',
+                    width: '27%',
+                    transform: 'translateY(100%)',
+                    zIndex: 5
+                  }}
+                />
+
+                <Box
+                  component="img"
+                  src={`${WEB_URL}/mobile.png`}
+                  alt="mobile side"
+                  sx={{
+                    position: 'absolute',
+                    bottom: '17%',
+                    right: '-10%',
+                    width: '16%',
+                    // transform: 'translateY(90%)',
                     transform: 'translateY(10%)',
                     zIndex: 5
                   }}
@@ -669,9 +896,9 @@ const Page = () => {
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    bottom: '50%',
-                    left: '-1%',
-                    width: '25%',
+                    bottom: '45%',
+                    left: '-14%',
+                    width: '30%',
                     transform: 'translateY(86%)',
                     zIndex: 4
                   }}
@@ -682,9 +909,9 @@ const Page = () => {
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    bottom: '50%',
-                    left: '-1%',
-                    width: '20%',
+                    bottom: '47%',
+                    left: '-12%',
+                    width: '22%',
                     transform: 'translateY(86%)',
                     zIndex: 4
                   }}

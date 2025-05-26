@@ -98,18 +98,33 @@ const Page = () => {
                 color="text.secondary"
                 variant="body2"
               >
-                Don&apos;t have an account?
-                &nbsp;
-                <NextLink
-                  component={NextLink}
-                  href="/register"
-                  underline="hover"
-                  variant="subtitle2"
-                  style={{color: '#add540'}}
-                >
-                  Register
-                </NextLink>
+                Log in to your account
+                {/*<NextLink*/}
+                {/*  component={NextLink}*/}
+                {/*  href="/register"*/}
+                {/*  underline="hover"*/}
+                {/*  variant="subtitle2"*/}
+                {/*  style={{color: '#add540'}}*/}
+                {/*>*/}
+                {/*  Register*/}
+                {/*</NextLink>*/}
               </Typography>
+              {/*<Typography*/}
+              {/*  color="text.secondary"*/}
+              {/*  variant="body2"*/}
+              {/*>*/}
+              {/*  Don&apos;t have an account?*/}
+              {/*  &nbsp;*/}
+              {/*  <NextLink*/}
+              {/*    component={NextLink}*/}
+              {/*    href="/register"*/}
+              {/*    underline="hover"*/}
+              {/*    variant="subtitle2"*/}
+              {/*    style={{color: '#add540'}}*/}
+              {/*  >*/}
+              {/*    Register*/}
+              {/*  </NextLink>*/}
+              {/*</Typography>*/}
             </Stack>
             <form
               noValidate
@@ -151,13 +166,13 @@ const Page = () => {
                   {formik.errors.submit}
                 </Typography>
               )}
-              <NextLink href={'/forget'} style={{
-                display: 'flex',
-                justifyContent: 'right',
-                alignItems: 'right',
-                marginTop: '10px',
-                color: '#add540'
-              }}>forget password?</NextLink>
+              {/*<NextLink href={'/forget'} style={{*/}
+              {/*  display: 'flex',*/}
+              {/*  justifyContent: 'right',*/}
+              {/*  alignItems: 'right',*/}
+              {/*  marginTop: '10px',*/}
+              {/*  color: '#add540'*/}
+              {/*}}>forget password?</NextLink>*/}
               <Button
                 fullWidth
                 size="large"

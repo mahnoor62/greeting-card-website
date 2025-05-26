@@ -82,7 +82,7 @@ export const Layout = (props) => {
             <img
               alt="logo image"
               src={`${WEB_URL}/logo3.png`}
-              width={450}
+              width={200}
             />
           </Box>
         </Grid>

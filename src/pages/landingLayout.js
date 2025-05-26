@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import Button from '@mui/material/Button';
 import NextLink from 'next/link';
+import Link from 'next/link';
 import * as React from 'react';
 import ChartBarIcon from '@heroicons/react/24/solid/ChartBarIcon';
 import GavelIcon from '@mui/icons-material/Gavel';
@@ -20,10 +21,13 @@ import LoginIcon from '@mui/icons-material/Login';
 import PhoneIcon from '@mui/icons-material/Phone';
 
 const TOP_NAV_HEIGHT = 64;
-const WEB_URL = process.env.NEXT_PUBLIC_WEB_URL;
+let WEB_URL = process.env.NEXT_PUBLIC_WEB_URL;
+
 export const LandingNav = () => {
-  // const [isScrolled, setIsScrolled] = useState(false);
   const router = useRouter();
+  const pathname = router.pathname;
+  const isContact = pathname === '#contact';
+  // const [isScrolled, setIsScrolled] = useState(false);
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   // const [open, setOpen] = React.useState(false);
   const [open, setOpen] = useState(false);
@@ -31,6 +35,15 @@ export const LandingNav = () => {
   const toggleDrawer = (state) => () => {
     setOpen(state);
   };
+
+  let webUrl = '#';
+  let WEB_URL = '';
+  if (pathname !== '/') {
+    webUrl = '/';
+    WEB_URL = process.env.NEXT_PUBLIC_WEB_URL;
+
+  }
+
 
   // useEffect(() => {
   //   const handleScroll = () => {
@@ -53,6 +66,7 @@ export const LandingNav = () => {
       <Box
         component="header"
         sx={{
+          // display:isContact ? 'none':'block',
           // bgcolor:'#d8c0ca',
           backgroundColor: '#1a1d25 !important',
           // boxShadow: 'none',
@@ -107,7 +121,7 @@ export const LandingNav = () => {
                 Greetings Card
               </Typography>
               <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, alignItems: 'center' }}>
-                <NextLink href="#contact" passHref scroll={true}>
+                <Link href={`${webUrl}contact`} passHref scroll={true}>
                   <Button
                     variant="outlined"
                     sx={{
@@ -123,8 +137,8 @@ export const LandingNav = () => {
                     Contact Us
                   </Button>
 
-                </NextLink>
-                {/*<NextLink href="/login">*/}
+                </Link>
+                {/*<Link href="/login">*/}
                 <Button
                   sx={{
                     px: 3,
@@ -135,7 +149,7 @@ export const LandingNav = () => {
                 >
                   Log In
                 </Button>
-                {/*</NextLink>*/}
+                {/*</Link>*/}
               </Box>
             </Box>
           </Box>
@@ -183,23 +197,41 @@ export const LandingNav = () => {
                 flexDirection: 'column'
               }}
             >
-              <NextLink href="#contact" passHref scroll={true}>
+              <Link href={`${webUrl}contact`} passHref scroll={true}>
                 <Button
-                  variant="outlined"
-                  sx={{
-                    width: '100%',
-                    borderRadius: '20px !important',
-                    borderColor: '#333333 !important',
-                    color: '#dcdbdb', // Optional: button text color same as border
-                    '&:hover': {
-                      borderColor: '#dcdbdb', // Keeps same color on hover
-                      backgroundColor: 'rgba(220, 219, 219, 0.1)' // Optional subtle hover
-                    }
-                  }}
-                >
+                    variant="outlined"
+                    sx={{
+                      width: '100%',
+                      borderRadius: '20px !important',
+                      borderColor: '#333333 !important',
+                      color: '#dcdbdb', // Optional: button text color same as border
+                      '&:hover': {
+                        borderColor: '#dcdbdb', // Keeps same color on hover
+                        backgroundColor: 'rgba(220, 219, 219, 0.1)' // Optional subtle hover
+                      }
+                    }}
+                  >
                   Contact Us
                 </Button>
-              </NextLink>
+
+              </Link>
+              {/*<NextLink href="#contact" passHref scroll={true}>*/}
+              {/*  <Button*/}
+              {/*    variant="outlined"*/}
+              {/*    sx={{*/}
+              {/*      width: '100%',*/}
+              {/*      borderRadius: '20px !important',*/}
+              {/*      borderColor: '#333333 !important',*/}
+              {/*      color: '#dcdbdb', // Optional: button text color same as border*/}
+              {/*      '&:hover': {*/}
+              {/*        borderColor: '#dcdbdb', // Keeps same color on hover*/}
+              {/*        backgroundColor: 'rgba(220, 219, 219, 0.1)' // Optional subtle hover*/}
+              {/*      }*/}
+              {/*    }}*/}
+              {/*  >*/}
+              {/*    Contact Us*/}
+              {/*  </Button>*/}
+              {/*</NextLink>*/}
               {/*<NextLink href="/login">*/}
               <Button
                 sx={{

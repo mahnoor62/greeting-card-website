@@ -25,13 +25,13 @@ export function createTheme() {
         xxxl: 3000,
         '4k': 3840,
         '5k': 5120,
-
+        largeLaptop: 1920,
         xs: 0,
         sm: 600,
         md: 900,
         ipad: 768,
         ipadPro: 1024,
-        surfacePro:912,
+        surfacePro: 912,
         lg: 1200,
         xl: 2000
       }
