@@ -45,10 +45,6 @@ const Page = () => {
   const WEB_URL = process.env.NEXT_PUBLIC_WEB_URL;
   const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME;
 
-  console.log('Width:', window.innerWidth);
-  console.log('Height:', window.innerHeight);
-
-
 
   return (
     <>
@@ -63,7 +59,7 @@ const Page = () => {
           // bgcolor:'black',
           width: '100%',
           // height:'100%',
-          height: { md: '50vh', xs: '40vh' , lg:'100vh', xl:'50vh'},
+          height: { md: '50vh', xs: '40vh' , lg:'100vh', xl:'100vh'},
           // minHeight: '100vh',
           display: 'flex',
           justifyContent: 'center',
@@ -338,13 +334,14 @@ const Page = () => {
                 />
                 <Box
                   component="img"
-                  src={`${WEB_URL}/cardBaloons.png`}
+                  src={`${WEB_URL}/cardBaloons.gif`}
                   alt="card"
                   sx={{
                     position: 'absolute',
                     bottom: {xs: '45%', md:'52%' },
-                    left: {md: '1%', xs:'4%' },
-                    width: '18%',
+                    left: {md: '-1%', xs:'4%' },
+                    // width: '18%',
+                    width: {xs: '18%', md:'22%' },
                     transform: 'translateY(86%)',
                     zIndex: 4
                   }}
@@ -525,13 +522,13 @@ const Page = () => {
               />
                 <Box
                   component="img"
-                  src={`${WEB_URL}/cardBaloons.png`}
+                  src={`${WEB_URL}/cardBaloons.gif`}
                   alt="card"
                   sx={{
                     position: 'absolute',
                     bottom: '47%',
-                    left: '4%',
-                    width: '17%',
+                    left: '3%',
+                    width: '18%',
                     transform: 'translateY(86%)',
                     zIndex: 4
                   }}
@@ -647,13 +644,13 @@ const Page = () => {
                 />
                 <Box
                   component="img"
-                  src={`${WEB_URL}/cardBaloons.png`}
+                  src={`${WEB_URL}/cardBaloons.gif`}
                   alt="card"
                   sx={{
                     position: 'absolute',
                     bottom: '47%',
-                    left: '4%',
-                    width: '17%',
+                    left: '3%',
+                    width: '19%',
                     transform: 'translateY(86%)',
                     zIndex: 4
                   }}
@@ -709,11 +706,11 @@ const Page = () => {
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    right: '-30%',
-                    top: '30%',
+                    right: '-45%',
+                    top: '25%',
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
-                    width: '50%',
+                    width: '60%',
                     zIndex: 11,
                   }}
                 />
@@ -727,7 +724,7 @@ const Page = () => {
                     top: '30%',
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
-                    width: '30%',
+                    width: '45%',
                     zIndex: 11,
                   }}
                 />
@@ -738,9 +735,9 @@ const Page = () => {
                   alt="mac side"
                   sx={{
                     position: 'absolute',
-                    bottom: '40%',
-                    right: '-10%',
-                    width: '27%',
+                    bottom: '45%',
+                    right: '-14%',
+                    width: '30%',
                     transform: 'translateY(100%)',
                     zIndex: 5
                   }}
@@ -752,8 +749,8 @@ const Page = () => {
                   alt="mobile side"
                   sx={{
                     position: 'absolute',
-                    bottom: '17%',
-                    right: '-10%',
+                    bottom: '33%',
+                    right: '-13%',
                     width: '16%',
                     transform: 'translateY(90%)',
                     // transform: 'translateY(10%)',
@@ -767,7 +764,7 @@ const Page = () => {
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    bottom: '45%',
+                    bottom: '48%',
                     left: '-14%',
                     width: '30%',
                     transform: 'translateY(86%)',
@@ -776,13 +773,13 @@ const Page = () => {
                 />
                 <Box
                   component="img"
-                  src={`${WEB_URL}/cardBaloons.png`}
+                  src={`${WEB_URL}/cardBaloons.gif`}
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    bottom: '47%',
-                    left: '-12%',
-                    width: '22%',
+                    bottom: '50%',
+                    left: '-14%',
+                    width: '25%',
                     transform: 'translateY(86%)',
                     zIndex: 4
                   }}
@@ -838,11 +835,11 @@ const Page = () => {
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    right: '-30%',
-                    top: '30%',
+                    right: '-60%',
+                    top: '35%',
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
-                    width: '50%',
+                    width: '70%',
                     zIndex: 11,
                   }}
                 />
@@ -853,10 +850,10 @@ const Page = () => {
                   sx={{
                     position: 'absolute',
                     left: '15%',
-                    top: '30%',
+                    top: '35%',
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
-                    width: '30%',
+                    width: '50%',
                     zIndex: 11,
                   }}
                 />
@@ -867,9 +864,9 @@ const Page = () => {
                   alt="mac side"
                   sx={{
                     position: 'absolute',
-                    bottom: '40%',
-                    right: '-10%',
-                    width: '27%',
+                    bottom: '46%',
+                    right: '-14%',
+                    width: '30%',
                     transform: 'translateY(100%)',
                     zIndex: 5
                   }}
@@ -881,9 +878,9 @@ const Page = () => {
                   alt="mobile side"
                   sx={{
                     position: 'absolute',
-                    bottom: '17%',
-                    right: '-10%',
-                    width: '16%',
+                    bottom: '33%',
+                    right: '-14%',
+                    width: '18%',
                     // transform: 'translateY(90%)',
                     transform: 'translateY(10%)',
                     zIndex: 5
@@ -896,22 +893,22 @@ const Page = () => {
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    bottom: '45%',
-                    left: '-14%',
-                    width: '30%',
+                    bottom: '52%',
+                    left: '-22%',
+                    width: '40%',
                     transform: 'translateY(86%)',
                     zIndex: 4
                   }}
                 />
                 <Box
                   component="img"
-                  src={`${WEB_URL}/cardBaloons.png`}
+                  src={`${WEB_URL}/cardBaloons.gif`}
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    bottom: '47%',
-                    left: '-12%',
-                    width: '22%',
+                    bottom: '55%',
+                    left: '-23%',
+                    width: '35%',
                     transform: 'translateY(86%)',
                     zIndex: 4
                   }}

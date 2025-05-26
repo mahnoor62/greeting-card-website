@@ -576,10 +576,11 @@ const Section2 = () => {
                           </Box>
                         ) : (
                           displayedCards.map((data, index) => (
-                            <Grid md={3} lg={3} xs={6} key={index} sx={{ p: 1 }}>
+                            <Grid md={4} lg={3} xs={6} key={index} sx={{ p: 1 }}>
                               <NextLink href="/card-editor" passHref legacyBehavior>
                                 <Box
                                   component="img"
+                                  loading="lazy"
                                   src={`${BASE_URL}/${data?.frontDesign}`}
                                   alt={data?.title}
                                   sx={{ width: '100%', height: 'auto', display: 'block' }}
