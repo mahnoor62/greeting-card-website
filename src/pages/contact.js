@@ -352,7 +352,7 @@ const Contact = () => {
                 width: '100%',
                 mt: 5
               }}>
-                <NextLink href="/term">
+                <NextLink href="/">
                   <Button
                     size="large"
                     fullwidth
@@ -374,7 +374,8 @@ const Contact = () => {
                   >
                     Submit
                   </Button>
-                </NextLink></Box>
+                </NextLink>
+            </Box>
             </Grid>
           </Grid>
         </Container>

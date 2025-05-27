@@ -53,8 +53,8 @@ const Page = () => {
       </Head>
       <Box
         sx={{
-          // overflowX: 'hidden',
-          // overflowY: 'hidden',
+          overflowX: 'hidden',
+          overflowY: 'hidden',
           position: 'relative',
           // bgcolor:'black',
           width: '100%',
@@ -156,11 +156,11 @@ const Page = () => {
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    right: {md: '-23%', lg:'-35%' , xs:'-20%'},
+                    right: {md: '-22%', lg:'-33%' , xs:'-20%'},
                     top: {md: '25%',lg:'20%',  xs:'25%' },
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
-                    width: { md: '50%',lg:"60%", xs: '45%' },
+                    width: { md: '50%', xs: '45%' },
                     // width: { md: '45%', xs: '30%' },
                     zIndex: 11,
                   }}
@@ -176,7 +176,7 @@ const Page = () => {
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
                     // width: { md: '28%', xs: '30%' },
-                    width: { md: '33%',lg:'40%',  xs: '40%' },
+                    width: { md: '33%',lg:'35%',  xs: '40%' },
                     zIndex: 11,
                   }}
                 />

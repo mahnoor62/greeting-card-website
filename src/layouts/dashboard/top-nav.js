@@ -81,8 +81,10 @@ export const TopNav = (props) => {
                   onClick={() => router.back()}
                   sx={{ position: 'absolute', left: 0 }}
                 ></Button>
+                {/*<NextLink href="/contact">*/}
                 <img src={`${WEB_URL}/logo3.png`} alt="Logo"
                      style={{ height: 80, paddingBottom: 5 }}/>
+                {/*</NextLink>*/}
                 <Stack
                   alignItems="center"
                   direction="row"

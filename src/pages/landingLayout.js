@@ -91,6 +91,7 @@ export const LandingNav = () => {
                 backgroundColor: '#1a1d25 !important'
               }}
             >
+              <NextLink href="/"  passHref legacyBehavior>
               <Box
                 component="img"
                 src={`${WEB_URL}/logo3.png`}
@@ -105,6 +106,7 @@ export const LandingNav = () => {
                   height: 'auto'
                 }}
               />
+              </NextLink>
               <Typography
                 gutterBottom
                 variant="h3"

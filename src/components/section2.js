@@ -298,7 +298,12 @@ const Section2 = () => {
                     {tabData.map((tab) => (
                       <Box key={tab.value} sx={{ position: 'relative' }}>
                         <Box
-                          onClick={() => handleTabClick(tab.value)}
+                          onClick={(e) => {
+                            e.stopPropagation(); // prevent switching tab
+                            handleDropdownClick(e, tab.value);
+                            handleTabClick(tab.value);
+                          }}
+                          // onClick={() => handleTabClick(tab.value)}
                           sx={{
                             display: 'flex',
                             justifyContent: 'center',
@@ -326,10 +331,10 @@ const Section2 = () => {
                           }}>{tab.label}</Typography>
                           <IconButton
                             size="small"
-                            onClick={(e) => {
-                              e.stopPropagation(); // prevent switching tab
-                              handleDropdownClick(e, tab.value);
-                            }}
+                            // onClick={(e) => {
+                            //   e.stopPropagation(); // prevent switching tab
+                            //   handleDropdownClick(e, tab.value);
+                            // }}
                             sx={{ color: value === tab.value ? 'white' : 'black', p: 0 }}
                           >
                             <ArrowDropDownIcon/>
