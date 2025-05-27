@@ -53,8 +53,8 @@ const Page = () => {
       </Head>
       <Box
         sx={{
-          overflowX: 'hidden',
-          overflowY: 'hidden',
+          // overflowX: 'hidden',
+          // overflowY: 'hidden',
           position: 'relative',
           // bgcolor:'black',
           width: '100%',
@@ -152,33 +152,31 @@ const Page = () => {
                 />
                 <Box
                   component="img"
-                  src={`${WEB_URL}/butterfly.png`}
+                  src={`${WEB_URL}/butterfly.gif`}
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    right: {md: '-20%' , xs:'-10%'},
-                    top: {md: '30%', xs:'25%' },
+                    right: {md: '-23%', lg:'-35%' , xs:'-20%'},
+                    top: {md: '25%',lg:'20%',  xs:'25%' },
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
-                    width: {
-                      md: '45%', xs: '30%'
-                    },
+                    width: { md: '50%',lg:"60%", xs: '45%' },
+                    // width: { md: '45%', xs: '30%' },
                     zIndex: 11,
                   }}
                 />
                 <Box
                   component="img"
-                  src={`${WEB_URL}/heart.png`}
+                  src={`${WEB_URL}/hearts.gif`}
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    left: '25%',
-                    top: {md: '30%', xs:'35%' },
+                    left: '22%',
+                    top: {md: '25%',xs:'28%' },
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
-                    width: {
-                      md: '28%', xs: '30%'
-                    },
+                    // width: { md: '28%', xs: '30%' },
+                    width: { md: '33%',lg:'40%',  xs: '40%' },
                     zIndex: 11,
                   }}
                 />
@@ -339,9 +337,9 @@ const Page = () => {
                   sx={{
                     position: 'absolute',
                     bottom: {xs: '45%', md:'52%' },
-                    left: {md: '-1%', xs:'4%' },
+                    left: {md: '-1%', xs:'3%' },
                     // width: '18%',
-                    width: {xs: '18%', md:'22%' },
+                    width: {xs: '20%', md:'22%' },
                     transform: 'translateY(86%)',
                     zIndex: 4
                   }}
@@ -455,12 +453,12 @@ const Page = () => {
 
                 <Box
                   component="img"
-                  src={`${WEB_URL}/butterfly.png`}
+                  src={`${WEB_URL}/butterfly.gif`}
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    right: '-20%',
-                    top: '35%',
+                    right: '-25%',
+                    top: '30%',
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
                     width: '50%',
@@ -469,15 +467,15 @@ const Page = () => {
                 />
                 <Box
                   component="img"
-                  src={`${WEB_URL}/heart.png`}
+                  src={`${WEB_URL}/hearts.gif`}
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    left: '24%',
+                    left: '25%',
                     top: '35%',
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
-                    width: '30%',
+                    width: '40%',
                     zIndex: 11,
                   }}
                 />
@@ -577,12 +575,12 @@ const Page = () => {
                 />
                 <Box
                   component="img"
-                  src={`${WEB_URL}/butterfly.png`}
+                  src={`${WEB_URL}/butterfly.gif`}
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    right: '-20%',
-                    top: '35%',
+                    right: '-23%',
+                    top: '30%',
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
                     width: '50%',
@@ -591,15 +589,15 @@ const Page = () => {
                 />
                 <Box
                   component="img"
-                  src={`${WEB_URL}/heart.png`}
+                  src={`${WEB_URL}/hearts.gif`}
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    left: '24%',
-                    top: '35%',
+                    left: '25%',
+                    top: '30%',
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
-                    width: '30%',
+                    width: '35%',
                     zIndex: 11,
                   }}
                 />
@@ -702,29 +700,29 @@ const Page = () => {
                 />
                 <Box
                   component="img"
-                  src={`${WEB_URL}/butterfly.png`}
+                  src={`${WEB_URL}/butterfly.gif`}
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    right: '-45%',
-                    top: '25%',
+                    right: '-70%',
+                    top: '22%',
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
-                    width: '60%',
+                    width: '80%',
                     zIndex: 11,
                   }}
                 />
                 <Box
                   component="img"
-                  src={`${WEB_URL}/heart.png`}
+                  src={`${WEB_URL}/hearts.gif`}
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    left: '15%',
-                    top: '30%',
+                    left: '20%',
+                    top: '25%',
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
-                    width: '45%',
+                    width: '55%',
                     zIndex: 11,
                   }}
                 />
@@ -778,8 +776,8 @@ const Page = () => {
                   sx={{
                     position: 'absolute',
                     bottom: '50%',
-                    left: '-14%',
-                    width: '25%',
+                    left: '-16%',
+                    width: '30%',
                     transform: 'translateY(86%)',
                     zIndex: 4
                   }}
@@ -831,29 +829,29 @@ const Page = () => {
                 />
                 <Box
                   component="img"
-                  src={`${WEB_URL}/butterfly.png`}
+                  src={`${WEB_URL}/butterfly.gif`}
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    right: '-60%',
-                    top: '35%',
+                    right: '-100%',
+                    top: '30%',
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
-                    width: '70%',
+                    width: '100%',
                     zIndex: 11,
                   }}
                 />
                 <Box
                   component="img"
-                  src={`${WEB_URL}/heart.png`}
+                  src={`${WEB_URL}/hearts.gif`}
                   alt="card"
                   sx={{
                     position: 'absolute',
                     left: '15%',
-                    top: '35%',
+                    top: '30%',
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
-                    width: '50%',
+                    width: '90%',
                     zIndex: 11,
                   }}
                 />
@@ -907,8 +905,8 @@ const Page = () => {
                   sx={{
                     position: 'absolute',
                     bottom: '55%',
-                    left: '-23%',
-                    width: '35%',
+                    left: '-25%',
+                    width: '40%',
                     transform: 'translateY(86%)',
                     zIndex: 4
                   }}
