@@ -153,36 +153,36 @@ const AboutUs = () => {
                 data-aos-duration="600"
                 data-aos-easing="ease-in"
                 component="img"
-                src={`${WEB_URL}/tlb.png`}
+                src={`${WEB_URL}/tlb.gif`}
                 alt="top left balloon"
-                sx={{ position: 'absolute', bottom: {md: '15%', xs:'25%' }, left: {md: '100%', xs:'80%' }, width: {md: '12%', xs:'20%' }, zIndex: 4 }}
+                sx={{ position: 'absolute', bottom: {md: 0, xs:'20%' }, left: {md: '78%', xs:'50%' }, width: {md: '50%', xs:'70%' }, zIndex: 4 }}
               />
               <Box
                 data-aos="zoom-in-down"
                 data-aos-duration="600"
                 data-aos-easing="ease-in"
                 component="img"
-                src={`${WEB_URL}/trb.png`}
+                src={`${WEB_URL}/trb.gif`}
                 alt="top right balloon"
-                sx={{ position: 'absolute', top: {md: '30%', xs:'30%' }, right: {md: - 150, xs:0 }, width: {md: '22%', xs:'20%' }, zIndex: 4 }}
+                sx={{ position: 'absolute', top: {md: '25%', xs:'25%' }, right: {md: - 150, xs:-30 }, width: {md: '30%', xs:'50%' }, zIndex: 4 }}
               />
               <Box
                 data-aos="zoom-in-up"
                 data-aos-duration="600"
                 data-aos-easing="ease-in"
                 component="img"
-                src={`${WEB_URL}/blb.png`}
+                src={`${WEB_URL}/blb.gif`}
                 alt="bottom left balloon"
-                sx={{ position: 'absolute', bottom: {md: '8%', xs:'28%'}, left: {md: '38%', xs:'5%' }, width: {md: '10%' , xs:'15%'}, zIndex: 4 }}
+                sx={{ position: 'absolute', bottom: {md: '2%', xs:'20%'}, left: {md: '20%', xs:'-20%' }, width: {md: '50%' , xs:'70%'}, zIndex: 4 }}
               />
               <Box
                 data-aos="zoom-in-down"
                 data-aos-duration="600"
                 data-aos-easing="ease-in"
                 component="img"
-                src={`${WEB_URL}/brb.png`}
+                src={`${WEB_URL}/brb.gif`}
                 alt="bottom right balloon"
-                sx={{ position: 'absolute', top: {md:'23%', xs:'30%'}, right: {md:'43%'}, width: {md: '15%' , xs:'20%'}, zIndex: 4 }}
+                sx={{ position: 'absolute', top: {md:'15%', xs:'25%'}, right: {md:'27%', xs:'63%'}, width: {md: '50%' , xs:'50%'}, zIndex: 4 }}
               />
             </Card>
 
@@ -282,27 +282,27 @@ const AboutUs = () => {
               {/* Balloon Overlays */}
               <Box
                 component="img"
-                src={`${WEB_URL}/tlb.png`}
+                src={`${WEB_URL}/tlb.gif`}
                 alt="top left balloon"
-                sx={{ position: 'absolute', bottom: '20%', left: '105%', width: '10%', zIndex: 4 }}
+                sx={{ position: 'absolute', bottom: '8%', left: '87%', width: '40%', zIndex: 4 }}
               />
               <Box
                 component="img"
-                src={`${WEB_URL}/trb.png`}
+                src={`${WEB_URL}/trb.gif`}
                 alt="top right balloon"
-                sx={{ position: 'absolute', top: '40%', right: '-20%', width: '20%', zIndex: 4 }}
+                sx={{ position: 'absolute', top: '30%', right: '-30%', width: '40%', zIndex: 4 }}
               />
               <Box
                 component="img"
-                src={`${WEB_URL}/blb.png`}
+                src={`${WEB_URL}/blb.gif`}
                 alt="bottom left balloon"
-                sx={{ position: 'absolute', bottom: '15%', left: '48%', width:'10%', zIndex: 4 }}
+                sx={{ position: 'absolute', bottom: '10%', left: '35%', width:'40%', zIndex: 4 }}
               />
               <Box
                 component="img"
-                src={`${WEB_URL}/brb.png`}
+                src={`${WEB_URL}/brb.gif`}
                 alt="bottom right balloon"
-                sx={{ position: 'absolute', top: '35%', right: '35%', width: '15%', zIndex: 4 }}
+                sx={{ position: 'absolute', top: '28%', right: '18%', width: '50%', zIndex: 4 }}
               />
             </Card>
 
@@ -406,27 +406,27 @@ const AboutUs = () => {
               {/* Balloon Overlays */}
               <Box
                 component="img"
-                src={`${WEB_URL}/tlb.png`}
+                src={`${WEB_URL}/tlb.gif`}
                 alt="top left balloon"
-                sx={{ position: 'absolute', bottom: '20%', left: '96%', width: '10%', zIndex: 4 }}
+                sx={{ position: 'absolute', bottom: '8%', left: '80%', width: '40%', zIndex: 4 }}
               />
               <Box
                 component="img"
-                src={`${WEB_URL}/trb.png`}
+                src={`${WEB_URL}/trb.gif`}
                 alt="top right balloon"
-                sx={{ position: 'absolute', top: '30%', right:'-10%', width: '15%', zIndex: 4 }}
+                sx={{ position: 'absolute', top: '22%', right:'-15%', width: '30%', zIndex: 4 }}
               />
               <Box
                 component="img"
-                src={`${WEB_URL}/blb.png`}
+                src={`${WEB_URL}/blb.gif`}
                 alt="bottom left balloon"
-                sx={{ position: 'absolute', bottom: '15%', left: '40%', width: '10%', zIndex: 4 }}
+                sx={{ position: 'absolute', bottom: '10%', left: '27%', width: '35%', zIndex: 4 }}
               />
               <Box
                 component="img"
-                src={`${WEB_URL}/brb.png`}
+                src={`${WEB_URL}/brb.gif`}
                 alt="bottom right balloon"
-                sx={{ position: 'absolute', top: {md:'23%', xs:'30%'}, right: '45%', width: '13%', zIndex: 4 }}
+                sx={{position: 'absolute', top: '12%', right: '28%', width: '50%', zIndex: 4 }}
               />
             </Card>
 

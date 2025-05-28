@@ -188,7 +188,8 @@ export const LandingNav = () => {
             onClick={toggleDrawer(false)}
             onKeyDown={toggleDrawer(false)}
           >
-            <img src={`${WEB_URL}/logo3.png`} alt="Logo" style={{ height: 50, marginTop: '20px' }}/>
+            <NextLink href="/"  passHref legacyBehavior>
+              <img src={`${WEB_URL}/logo3.png`} alt="Logo" style={{ height: 50, marginTop: '20px' }}/></NextLink>
             <Box
               sx={{
                 mt: 5,
