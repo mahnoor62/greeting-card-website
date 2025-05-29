@@ -69,7 +69,7 @@ const Contact = () => {
   return (
     <>
       <Head>
-        <title>Contact | {APP_NAME}</title>
+        <title>Homepage | {APP_NAME}</title>
       </Head>
       {
         isContact && (

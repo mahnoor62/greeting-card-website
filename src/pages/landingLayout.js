@@ -140,7 +140,7 @@ export const LandingNav = () => {
                   </Button>
 
                 </Link>
-                {/*<Link href="/login">*/}
+                <Link href="/login">
                 <Button
                   sx={{
                     px: 3,
@@ -151,7 +151,7 @@ export const LandingNav = () => {
                 >
                   Log In
                 </Button>
-                {/*</Link>*/}
+                </Link>
               </Box>
             </Box>
           </Box>
@@ -235,7 +235,7 @@ export const LandingNav = () => {
               {/*    Contact Us*/}
               {/*  </Button>*/}
               {/*</NextLink>*/}
-              {/*<NextLink href="/login">*/}
+              <NextLink href="/login">
               <Button
                 sx={{
                   px: 3,
@@ -246,7 +246,7 @@ export const LandingNav = () => {
               >
                 Log In
               </Button>
-              {/*</NextLink>*/}
+              </NextLink>
             </Box>
           </Box>
         </Drawer>

@@ -70,7 +70,14 @@ const Section2 = () => {
 
   const tabData = [
     // { label: 'Filter', value: '1', options: ['All',  'New'] },
-    { label: 'Card Type', value: '2', options: ['All','Birthday', 'Wedding', 'Valentines Day', 'Mothers Day', 'Fathers Day', 'Sister Day', 'Anniversary', 'Marry Christmas'] },
+    { label: 'Card Type', value: '2', options: ['All', 'Birthday',
+        'Wedding',
+        'Mothers Day',
+        'Fathers Day',
+        'Sister Day',
+        'Anniversary',
+        'Valentines Day',
+        'Marry Christmas'] },
     { label: 'Price', value: '3', options: ['Low to High', 'High to Low'] },
     { label: 'Sorted by', value: '4', options: ['Ascending', 'Descending'] }
   ];

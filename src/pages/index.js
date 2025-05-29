@@ -25,56 +25,16 @@ import PopularCards from '../components/popularCards';
 import Section2 from '../components/section2';
 import AboutUs from '../components/about';
 import Section1 from '../components/section1';
+import QRCodeGenerator from '../components/qrCode';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
-// const demoUser = {
-//   user: 'demo',
-//   token: 'demoToken123'
-// };
+const WEB_URL = process.env.NEXT_PUBLIC_WEB_URL;
+const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME;
 
 const Page = () => {
-  // const [games, setGames] = useState([]);
+  const [text, setText] = useState('6836e2b66046cec0252eccb9');
 
-  // Fetch all games
-  // useEffect(() => {
-  //   // const token = generateJWTToken(demoUser);
-  //   const fetchGames = async () => {
-  //     try {
-  //       const demoUserInfo = JSON.parse(window.localStorage.getItem('demoUser'));
-  //       const token = demoUserInfo ? demoUserInfo.token : null;
-  //       const response = await axios.get(API_BASE_URL + '/api/game/get-all-games', {
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //           'x-access-token': token
-  //         }
-  //       });
-  //       setGames(response.data.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //       toast.error(error.response.data.msg);
-  //     }
-  //   };
-  //   fetchGames();
-  // }, []);
 
-  const WEB_URL = process.env.NEXT_PUBLIC_WEB_URL;
-  const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME;
-
-  // const createUser = async (slug) => {
-  //   try {
-  //     const response = await axios.get(API_BASE_URL + `/api/temporary-user/create/${slug}`, {
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       }
-  //     });
-  //     const userId = response.data.data.userId;
-  //     window.localStorage.setItem('tempUserId', userId);
-  //   } catch (error) {
-  //     console.log(error);
-  //     toast.error(error.response.data.msg);
-  //   }
-  // };
   return (
     <>
       <Head>
@@ -101,6 +61,10 @@ const Page = () => {
         <PopularCards/>
         <AboutUs/>
         <Clients/>
+        {/*<div style={{ padding: '20px', background: '#fff' }}>*/}
+        {/*  <QRCodeGenerator value={text} size={200} />*/}
+        {/*  <p>{text}</p>*/}
+        {/*</div>*/}
         <Contact/>
       </Box>
       <Footer/>

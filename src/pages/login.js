@@ -176,7 +176,10 @@ const Page = () => {
               <Button
                 fullWidth
                 size="large"
-                sx={{ mt: 3 }}
+                sx={{ mt: 3 ,'&:hover': {
+                    // borderColor: '#dcdbdb', // Keeps same color on hover
+                    backgroundColor: '#c165a0' // Optional subtle hover
+                  }}}
                 type="submit"
                 variant="contained"
                 disabled={formik.isSubmitting}
