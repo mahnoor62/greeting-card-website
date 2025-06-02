@@ -208,6 +208,7 @@ const Page = () => {
                       // , ipad:'270px', ipadPro:'360px'
                     }, // ✅ custom heights
                     zIndex: 10,
+                    
                     border: 'none'
                   }}
                 />
