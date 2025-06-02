@@ -70,7 +70,8 @@ export const LandingNav = () => {
           // bgcolor:'#d8c0ca',
           backgroundColor: '#1a1d25 !important',
           // boxShadow: 'none',
-          zIndex: (theme) => theme.zIndex.appBar,
+          zIndex: 1100,
+          // zIndex: (theme) => theme.zIndex.appBar,
           width: '100% !important',
           position: 'sticky',
           pt: 0,
@@ -235,7 +236,7 @@ export const LandingNav = () => {
               {/*    Contact Us*/}
               {/*  </Button>*/}
               {/*</NextLink>*/}
-              <NextLink href="/login">
+              <NextLink href="/login" passHref  legacyBehavior>
               <Button
                 sx={{
                   px: 3,

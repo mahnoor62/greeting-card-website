@@ -53,8 +53,8 @@ const Page = () => {
       </Head>
       <Box
         sx={{
-          overflowX: 'hidden',
-          overflowY: 'hidden',
+          // overflowX: 'hidden',
+          // overflowY: 'hidden',
           position: 'relative',
           // bgcolor:'black',
           width: '100%',
@@ -162,7 +162,7 @@ const Page = () => {
                     // width: { xl: '70%', lg: '71%', xs: '55%'
                     width: { md: '50%', xs: '45%' },
                     // width: { md: '45%', xs: '30%' },
-                    zIndex: 11,
+                    zIndex: 1300,
                   }}
                 />
                 <Box
@@ -177,7 +177,9 @@ const Page = () => {
                     // width: { xl: '70%', lg: '71%', xs: '55%'
                     // width: { md: '28%', xs: '30%' },
                     width: { md: '33%',lg:'35%',  xs: '40%' },
-                    zIndex: 11,
+                    // width: { md: '33%',lg:'35%',  xs: '40%' },
+                    zIndex: 1300,
+                    // zIndex: 11,
                   }}
                 />
                 <Box
@@ -457,12 +459,13 @@ const Page = () => {
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    right: '-25%',
-                    top: '30%',
+                    right: '-20%',
+                    top: '20%',
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
-                    width: '50%',
-                    zIndex: 11,
+                    width: '40%',
+                    zIndex: 1300,
+                    // zIndex: 11,
                   }}
                 />
                 <Box
@@ -471,12 +474,13 @@ const Page = () => {
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    left: '25%',
-                    top: '35%',
+                    left: '22%',
+                    top: '25%',
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
-                    width: '40%',
-                    zIndex: 11,
+                    width: '35%',
+                    zIndex: 1300,
+                    // zIndex: 11,
                   }}
                 />
               <Box
@@ -498,7 +502,7 @@ const Page = () => {
                 alt="mobile side"
                 sx={{
                   position: 'absolute',
-                  bottom: '16%',
+                  bottom: '12%',
                   right: '3%',
                   width: '15%',
                   transform: 'translateY(10%)',
@@ -584,7 +588,8 @@ const Page = () => {
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
                     width: '50%',
-                    zIndex: 11,
+                    zIndex: 1300,
+                    // zIndex: 11,
                   }}
                 />
                 <Box
@@ -598,7 +603,8 @@ const Page = () => {
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
                     width: '35%',
-                    zIndex: 11,
+                    zIndex: 1300,
+                    // zIndex: 11,
                   }}
                 />
                 <Box
@@ -704,12 +710,13 @@ const Page = () => {
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    right: '-70%',
-                    top: '22%',
+                    right: '-85%',
+                    top: '20%',
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
                     width: '80%',
-                    zIndex: 11,
+                    zIndex: 1300,
+                    // zIndex: 11,
                   }}
                 />
                 <Box
@@ -718,12 +725,13 @@ const Page = () => {
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    left: '20%',
-                    top: '25%',
+                    left: '10%',
+                    top: '20%',
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
                     width: '55%',
-                    zIndex: 11,
+                    zIndex: 1300,
+                    // zIndex: 11,
                   }}
                 />
                  {/* Bottom Right - Mac */}
@@ -837,8 +845,9 @@ const Page = () => {
                     top: '30%',
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
-                    width: '100%',
-                    zIndex: 11,
+                    width: '90%',
+                    zIndex: 1300,
+                    // zIndex: 11,
                   }}
                 />
                 <Box
@@ -847,12 +856,12 @@ const Page = () => {
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    left: '15%',
+                    left: '5%',
                     top: '30%',
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
-                    width: '90%',
-                    zIndex: 11,
+                    width: '70%',
+                    zIndex: 1300,
                   }}
                 />
                 {/* Bottom Right - Mac */}

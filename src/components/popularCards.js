@@ -437,7 +437,8 @@ const PopularCards = () => {
                     height: '100%',
                     display: 'block',
                     mx: 'auto',
-                    my:10
+                    my:10,
+                    cursor:'pointer'
                   }}
                 />
               </SwiperSlide>
