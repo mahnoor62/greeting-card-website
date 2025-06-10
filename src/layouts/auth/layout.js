@@ -14,7 +14,7 @@ export const Layout = (props) => {
   const router = useRouter();
 
   if (isAuthenticated) {
-    router.push('/dashboard');
+    router.push('/checkout');
   }
 
   return (
@@ -29,47 +29,47 @@ export const Layout = (props) => {
         container
         sx={{ flex: '1 1 auto' }}
       >
+        {/*<Grid*/}
+        {/*  xs={12}*/}
+        {/*  lg={6}*/}
+        {/*  sx={{*/}
+        {/*    backgroundColor: 'background.paper',*/}
+        {/*    display: 'flex',*/}
+        {/*    flexDirection: 'column',*/}
+        {/*    position: 'relative'*/}
+        {/*  }}*/}
+        {/*>*/}
+        {/*  <Box*/}
+        {/*    component="header"*/}
+        {/*    sx={{*/}
+        {/*      left: 0,*/}
+        {/*      p: 3,*/}
+        {/*      position: 'fixed',*/}
+        {/*      top: 0,*/}
+        {/*      width: '100%'*/}
+        {/*    }}*/}
+        {/*  >*/}
+        {/*    <Box*/}
+        {/*      component={NextLink}*/}
+        {/*      href="/"*/}
+        {/*      sx={{*/}
+        {/*        display: 'inline-flex',*/}
+        {/*        height: 32,*/}
+        {/*        width: 32*/}
+        {/*      }}*/}
+        {/*    >*/}
+        {/*      <Logo/>*/}
+        {/*    </Box>*/}
+        {/*  </Box>*/}
+        {/*  {children}*/}
+        {/*</Grid>*/}
         <Grid
           xs={12}
-          lg={6}
-          sx={{
-            backgroundColor: 'background.paper',
-            display: 'flex',
-            flexDirection: 'column',
-            position: 'relative'
-          }}
-        >
-          <Box
-            component="header"
-            sx={{
-              left: 0,
-              p: 3,
-              position: 'fixed',
-              top: 0,
-              width: '100%'
-            }}
-          >
-            <Box
-              component={NextLink}
-              href="/"
-              sx={{
-                display: 'inline-flex',
-                height: 32,
-                width: 32
-              }}
-            >
-              <Logo/>
-            </Box>
-          </Box>
-          {children}
-        </Grid>
-        <Grid
-          xs={12}
-          lg={6}
+          lg={12}
           sx={{
             alignItems: 'center',
             // background: 'background.paper',
-            background: 'radial-gradient(50% 50% at 50% 50%, #122647 0%, #090E23 100%)',
+            // background: 'radial-gradient(50% 50% at 50% 50%, #122647 0%, #090E23 100%)',
             color: 'white',
             display: 'flex',
             justifyContent: 'center',
@@ -78,13 +78,14 @@ export const Layout = (props) => {
             }
           }}
         >
-          <Box sx={{ p: 3 }}>
-            <img
-              alt="logo image"
-              src={`${WEB_URL}/logo3.png`}
-              width={200}
-            />
-          </Box>
+          {/*<Box sx={{ p: 3 }}>*/}
+          {/*  <img*/}
+          {/*    alt="logo image"*/}
+          {/*    src={`${WEB_URL}/logo3.png`}*/}
+          {/*    width={150}*/}
+          {/*  />*/}
+          {/*</Box>*/}
+          {children}
         </Grid>
       </Grid>
     </Box>

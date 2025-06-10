@@ -34,9 +34,13 @@ export const TopNav = (props) => {
   const accountPopover = usePopover();
   const [open, setOpen] = React.useState(false);
 
+
+
+
   return (
     <>
       <Box
+        // position="relative"
         component="header"
         sx={{
           backdropFilter: 'blur(6px)',
@@ -72,18 +76,18 @@ export const TopNav = (props) => {
             {/*<img src={`${WEB_URL}/logo3.png`} alt="Logo" style={{ height: 80, paddingBottom: 5 }}/>*/}
             {lgUp ? (
               <>
-                <Button
-                  startIcon={
-                    <SvgIcon>
-                      <ArrowBackIcon/>
-                    </SvgIcon>
-                  }
-                  onClick={() => router.back()}
-                  sx={{ position: 'absolute', left: 0 }}
-                ></Button>
+                {/*<Button*/}
+                {/*  startIcon={*/}
+                {/*    <SvgIcon>*/}
+                {/*      <ArrowBackIcon/>*/}
+                {/*    </SvgIcon>*/}
+                {/*  }*/}
+                {/*  onClick={() => router.back()}*/}
+                {/*  sx={{ position: 'absolute', left: 0 }}*/}
+                {/*></Button>*/}
                 {/*<NextLink href="/contact">*/}
                 <img src={`${WEB_URL}/logo3.png`} alt="Logo"
-                     style={{ height: 80, paddingBottom: 5 }}/>
+                     style={{ height: 50, paddingBottom: 5 }}/>
                 {/*</NextLink>*/}
                 <Stack
                   alignItems="center"
@@ -91,39 +95,39 @@ export const TopNav = (props) => {
                   spacing={2}
                 >
 
-                  <NextLink href="/dashboard">
-                    <Button
-                      startIcon={
-                        <SvgIcon>
-                          <ChartBarIcon/>
-                        </SvgIcon>
-                      }
-                    >
-                      Dashboard
-                    </Button>
-                  </NextLink>
-                  <NextLink href="/players">
-                    <Button
-                      startIcon={
-                        <SvgIcon>
-                          <AccessibilityIcon/>
-                        </SvgIcon>
-                      }
-                    >
-                      Players
-                    </Button>
-                  </NextLink>
-                  <NextLink href="/account">
-                    <Button
-                      startIcon={
-                        <SvgIcon>
-                          <UserIcon/>
-                        </SvgIcon>
-                      }
-                    >
-                      Account
-                    </Button>
-                  </NextLink>
+                  {/*<NextLink href="/dashboard">*/}
+                  {/*  <Button*/}
+                  {/*    startIcon={*/}
+                  {/*      <SvgIcon>*/}
+                  {/*        <ChartBarIcon/>*/}
+                  {/*      </SvgIcon>*/}
+                  {/*    }*/}
+                  {/*  >*/}
+                  {/*    Dashboard*/}
+                  {/*  </Button>*/}
+                  {/*</NextLink>*/}
+                  {/*<NextLink href="/players">*/}
+                  {/*  <Button*/}
+                  {/*    startIcon={*/}
+                  {/*      <SvgIcon>*/}
+                  {/*        <AccessibilityIcon/>*/}
+                  {/*      </SvgIcon>*/}
+                  {/*    }*/}
+                  {/*  >*/}
+                  {/*    Players*/}
+                  {/*  </Button>*/}
+                  {/*</NextLink>*/}
+                  {/*<NextLink href="/account">*/}
+                  {/*  <Button*/}
+                  {/*    startIcon={*/}
+                  {/*      <SvgIcon>*/}
+                  {/*        <UserIcon/>*/}
+                  {/*      </SvgIcon>*/}
+                  {/*    }*/}
+                  {/*  >*/}
+                  {/*    Account*/}
+                  {/*  </Button>*/}
+                  {/*</NextLink>*/}
                   <Avatar
                     onClick={accountPopover.handleOpen}
                     ref={accountPopover.anchorRef}
@@ -171,15 +175,15 @@ export const TopNav = (props) => {
               width: '100%'
             }}
           >
-            <Button
-              startIcon={
-                <SvgIcon>
-                  <ArrowBackIcon/>
-                </SvgIcon>
-              }
-              onClick={() => router.back()}
-              // style={{justifyContent: 'flex-start'}}
-            ></Button>
+            {/*<Button*/}
+            {/*  startIcon={*/}
+            {/*    <SvgIcon>*/}
+            {/*      <ArrowBackIcon/>*/}
+            {/*    </SvgIcon>*/}
+            {/*  }*/}
+            {/*  onClick={() => router.back()}*/}
+            {/*  // style={{justifyContent: 'flex-start'}}*/}
+            {/*></Button>*/}
             <img src={`${WEB_URL}/logo3.png`} alt="Logo"
                  style={{ height: '50px', marginLeft: 'auto' }}/>
           </Box>
@@ -190,39 +194,39 @@ export const TopNav = (props) => {
               textAlign: 'right'
             }}
           >
-            <NextLink href="/dashboard">
-              <Button
-                startIcon={
-                  <SvgIcon>
-                    <ChartBarIcon/>
-                  </SvgIcon>
-                }
-              >
-                Dashboard
-              </Button>
-            </NextLink>
-            <NextLink href="/players">
-              <Button
-                startIcon={
-                  <SvgIcon>
-                    <AccessibilityIcon/>
-                  </SvgIcon>
-                }
-              >
-                Players
-              </Button>
-            </NextLink>
-            <NextLink href="/account">
-              <Button
-                startIcon={
-                  <SvgIcon>
-                    <UserIcon/>
-                  </SvgIcon>
-                }
-              >
-                Account
-              </Button>
-            </NextLink>
+            {/*<NextLink href="/dashboard">*/}
+            {/*  <Button*/}
+            {/*    startIcon={*/}
+            {/*      <SvgIcon>*/}
+            {/*        <ChartBarIcon/>*/}
+            {/*      </SvgIcon>*/}
+            {/*    }*/}
+            {/*  >*/}
+            {/*    Dashboard*/}
+            {/*  </Button>*/}
+            {/*</NextLink>*/}
+            {/*<NextLink href="/players">*/}
+            {/*  <Button*/}
+            {/*    startIcon={*/}
+            {/*      <SvgIcon>*/}
+            {/*        <AccessibilityIcon/>*/}
+            {/*      </SvgIcon>*/}
+            {/*    }*/}
+            {/*  >*/}
+            {/*    Players*/}
+            {/*  </Button>*/}
+            {/*</NextLink>*/}
+            {/*<NextLink href="/account">*/}
+            {/*  <Button*/}
+            {/*    startIcon={*/}
+            {/*      <SvgIcon>*/}
+            {/*        <UserIcon/>*/}
+            {/*      </SvgIcon>*/}
+            {/*    }*/}
+            {/*  >*/}
+            {/*    Account*/}
+            {/*  </Button>*/}
+            {/*</NextLink>*/}
             <Avatar
               onClick={accountPopover.handleOpen}
               ref={accountPopover.anchorRef}

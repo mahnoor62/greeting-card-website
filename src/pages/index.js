@@ -4,7 +4,7 @@ import {
   CardContent,
   Container,
   Typography,
-  Grid, Box
+  Grid, Box, TextField, CircularProgress
 } from '@mui/material';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -26,14 +26,28 @@ import Section2 from '../components/section2';
 import AboutUs from '../components/about';
 import Section1 from '../components/section1';
 import QRCodeGenerator from '../components/qrCode';
+import DialogTitle from '@mui/material/DialogTitle';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { useRouter } from 'next/router';
+import { styled } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
+import { useAuth } from '../hooks/use-auth';
+import { useMounted } from '../hooks/use-mounted';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 const WEB_URL = process.env.NEXT_PUBLIC_WEB_URL;
 const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME;
 
-const Page = () => {
-  const [text, setText] = useState('6836e2b66046cec0252eccb9');
 
+
+
+
+const Page = () => {
 
   return (
     <>
@@ -70,6 +84,9 @@ const Page = () => {
         <Contact/>
       </Box>
       <Footer/>
+
+
+
     </>
   );
 };

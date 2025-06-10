@@ -15,7 +15,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import {useEffect } from 'react';
 const clientSideEmotionCache = createEmotionCache();
-
+const WEB_URL = process.env.NEXT_PUBLIC_WEB_URL;
+import Box from '@mui/material/Box';
 const SplashScreen = () => null;
 
 const App = (props) => {
@@ -55,6 +56,30 @@ const App = (props) => {
                   : getLayout(<Component {...pageProps} />)
               }
             </AuthConsumer>
+            {/*<AuthConsumer>*/}
+            {/*  {(auth) =>*/}
+            {/*    auth.isLoading ? (*/}
+            {/*      <SplashScreen />*/}
+            {/*    ) : (*/}
+            {/*      <Box*/}
+            {/*        sx={{*/}
+            {/*          width: '100%',*/}
+            {/*          minHeight: '100vh',*/}
+            {/*          backgroundImage: {*/}
+            {/*            xs: `url(${WEB_URL}/portrate.png)`,*/}
+            {/*            md: `url(${WEB_URL}/bg1.png)`,*/}
+            {/*          },*/}
+            {/*          backgroundSize: 'cover',*/}
+            {/*          backgroundPosition: 'center',*/}
+            {/*          backgroundRepeat: 'no-repeat',*/}
+            {/*        }}*/}
+            {/*      >*/}
+            {/*        {getLayout(<Component {...pageProps} />)}*/}
+            {/*      </Box>*/}
+            {/*    )*/}
+            {/*  }*/}
+            {/*</AuthConsumer>*/}
+
           </ThemeProvider>
         </AuthProvider>
       </LocalizationProvider>

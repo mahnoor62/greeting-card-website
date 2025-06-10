@@ -12,7 +12,7 @@ import { useState } from 'react';
 import { CircularProgress, Link } from '@mui/material';
 import toast from 'react-hot-toast';
 import NextLink from 'next/link';
-
+const WEB_URL = process.env.NEXT_PUBLIC_WEB_URL;
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 export default function Page() {
 
@@ -42,19 +42,33 @@ export default function Page() {
       toast.success('Your account is successfully verified');
     } catch (error) {
       console.log(error);
-
       toast.error(error.response.data.msg);
     }
     setLoading(false);
   };
 
   useEffect(() => {
+    if (!token) return; // wait until token is defined
+
     verify();
   }, [token]);
+
 
   return (
     <Box
       sx={{
+        width: '100%',
+        height: '100vh',
+        // overflowX:'hidden',
+        overflowY: 'hidden',
+        // minHeight: '100vh !important',
+        backgroundImage: {
+          xs: `url(${WEB_URL}/portrate.png)`,
+          md: `url(${WEB_URL}/bg1.png)`
+        },
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -62,7 +76,9 @@ export default function Page() {
       }}
     >
       <Box sx={{ minWidth: 300 }}>
-        <Card variant="outlined">
+        <Card sx={{
+          boxShadow: '0px 5px 22px rgba(0, 0, 0, 0.04), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.03)'
+        }}>
           <CardContent>
             <Box
               href="/"
@@ -72,10 +88,10 @@ export default function Page() {
               }}
             >
               <img src="/logo3.png" alt="Logo"
-                   style={{ height: 200 }}/>
+                   style={{ height: 50 }}/>
             </Box>
             <Typography variant="h5" component="div"
-                        sx={{ display: 'flex', justifyContent: 'center' }}>
+                        sx={{ display: 'flex', justifyContent: 'center', mt:5 }}>
               {
                 loading ? 'Verification In Process...' : 'Account Verified'
               }
@@ -84,9 +100,15 @@ export default function Page() {
               loading && <Box sx={{ textAlign: 'center', mt: 5 }}><CircularProgress/></Box>
             }
           </CardContent>
-          <CardActions sx={{ display: 'flex', justifyContent: 'center' }}>
+          <CardActions sx={{ display: 'flex', justifyContent: 'center' , mb:5}}>
             <NextLink href={'/login'}>
-              <Button variant="outlined" disabled={loading} fullWidth>Login</Button>
+              <Button variant="contained" disabled={loading} sx={{
+                // backgroundColor: '#c165a0',
+                '&:hover': {
+                  // borderColor: '#dcdbdb', // Keeps same color on hover
+                  backgroundColor: '#c165a0' // Optional subtle hover
+                }
+              }} fullWidth>Login</Button>
             </NextLink>
 
           </CardActions>

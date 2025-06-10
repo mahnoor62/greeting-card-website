@@ -72,7 +72,6 @@ const Section2 = () => {
     { label: 'Arranged by', value: '4', options: ['CreatedAt(Ascending)', 'CreatedAt(Descending)'] }
   ]);
 
-  console.log("cardType",cardType);
 
   const filteredAndSortedCards = useMemo(() => {
     let result = [...cards];
@@ -101,7 +100,7 @@ const Section2 = () => {
   }, [cards, cardType, cardPrice, cardSorted]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const cardsPerPage = 8;
+  const cardsPerPage = 20;
 
   const totalPages = Math.ceil(filteredAndSortedCards.length / cardsPerPage);
 
@@ -164,6 +163,7 @@ const Section2 = () => {
           data-aos-duration="600"
           data-aos-easing="ease-in"
           sx={{
+            // bgcolor:"red",
             pt: 2, pb: 5,
             display: 'flex', justifyContent: 'center', alignItems: 'center',
             flexDirection: 'column', height: '100%'
@@ -171,7 +171,7 @@ const Section2 = () => {
         >
           <Button size="large" sx={{
             mb: { md: 10, xs: 3 },
-            px: { lg: 6 },
+            px: { lg: 4 },
             py: { md: 2, xs: 1 },
             borderRadius: '30px !important',
             minWidth: { md: '250px', xs: '200px' },
@@ -258,7 +258,7 @@ const Section2 = () => {
                           onClose={() => handleClose(tab.value)}
                           anchorOrigin={{
                             vertical: 'bottom',
-                            horizontal: 'right'
+                            horizontal: 'left'
                           }}
                           transformOrigin={{
                             vertical: 'top',
@@ -266,7 +266,8 @@ const Section2 = () => {
                           }}
                           PaperProps={{
                             sx: {
-                              backgroundColor: 'black',
+                              backgroundColor: 'rgba(232, 207,222, 0.3 )',
+                              color:'black',
                               maxHeight: tab.label === 'Category' ? 200 : 'auto', // scroll if Category
                               overflowY: tab.label === 'Category' ? 'auto' : 'visible',
                               '&::-webkit-scrollbar': {
@@ -274,10 +275,10 @@ const Section2 = () => {
                                 overflowY:'hidden'
                               },
                               '&::-webkit-scrollbar-track': {
-                                background: 'black'
+                                background: 'rgba(232, 207,222, 0.8 )'
                               },
                               '&::-webkit-scrollbar-thumb': {
-                                backgroundColor: '#eee3ea',
+                                backgroundColor: '#c165a0',
                                 borderRadius: '4px'
                               }
                             }
@@ -293,8 +294,8 @@ const Section2 = () => {
                               <MenuItem
                                 key={i}
                                 sx={{
-                                  bgcolor: 'black',
-                                  color: '#eee3ea',
+                                  bgcolor: 'rgba(232, 207,222, 0.8 )',
+                                  color: 'black',
                                   '&:hover': {
                                     backgroundColor: '#eee3ea',
                                     color: 'black !important'
@@ -338,7 +339,7 @@ const Section2 = () => {
                         ) : (
                           displayedCards.map((data, index) => (
                             <Grid md={4} lg={3} xs={6} key={index} sx={{ p: 1 }}>
-                              <NextLink href="/card-editor" passHref legacyBehavior>
+                              <NextLink href={`/card-editor/${data.uuid}`}passHref legacyBehavior>
                                 <Box
                                   component="img"
                                   loading="lazy"

@@ -27,14 +27,14 @@ const Page = () => {
 
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down('mobile'));
   const islargeLaptop = useMediaQuery((theme) => theme.breakpoints.only('largeLaptop'));
-  const isIpadScreen = useMediaQuery((theme) => theme.breakpoints.between('ipad', 'ipadPro'));
+  // const isIpadScreen = useMediaQuery((theme) => theme.breakpoints.between('ipad', 'ipadPro'));
   // const isIpadScreen = useMediaQuery((theme) => theme.breakpoints.only('ipad'));
   const isLargeScreen = useMediaQuery((theme) => theme.breakpoints.up('large'));
   const isLaptopScreen = useMediaQuery((theme) => theme.breakpoints.up('laptop'));
   const isXXlUp = useMediaQuery((theme) => theme.breakpoints.up('xxl'));
   const is4KUp = useMediaQuery((theme) => theme.breakpoints.up('4k'));
   // const isExtraLargeScreen = useMediaQuery((theme) => theme.breakpoints.up('xxl'));
-  const isIpadPro = useMediaQuery(theme.breakpoints.only('ipadPro'));  // const largeScreen = useMediaQuery(theme.breakpoints.up('xl'));
+  // const isIpadPro = useMediaQuery(theme.breakpoints.only('ipadPro'));  // const largeScreen = useMediaQuery(theme.breakpoints.up('xl'));
   const extraLargeScreen = useMediaQuery(theme.breakpoints.up('xxl'));
 
   // const extraLargeQuery = useMediaQuery(theme.breakpoints.between('xxl', 2048));
@@ -42,9 +42,22 @@ const Page = () => {
   const laptop = useMediaQuery(theme.breakpoints.between('lg', 'xl'));
   const largeScreen = useMediaQuery(theme.breakpoints.up('xl'));
 
+
+
+  const isIpadScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+  const isIpadPro = useMediaQuery(theme.breakpoints.up('md'));
+
+
+
+
   const WEB_URL = process.env.NEXT_PUBLIC_WEB_URL;
   const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME;
 
+  console.log("isMobile", isMobile);
+  console.log("isLaptopScreen", isLaptopScreen);
+  console.log("isIpadPro", isIpadPro);
+  // console.log("isTablet", isTablet);
+  // console.log("isDesktop", isDesktop);
 
   return (
     <>
@@ -131,7 +144,7 @@ const Page = () => {
 
 
           {
-          (isMobile || isLaptopScreen) &&  !isXXlUp &&   (
+          (isMobile || isLaptopScreen) &&  !isXXlUp && (
               <>
                 <Box
                   component="img"
@@ -156,13 +169,14 @@ const Page = () => {
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    right: {md: '-22%', lg:'-33%' , xs:'-20%'},
+                    right: {md: '-22%', lg:'-30%' , xs:'-20%'},
                     top: {md: '25%',lg:'20%',  xs:'25%' },
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
                     width: { md: '50%', xs: '45%' },
                     // width: { md: '45%', xs: '30%' },
                     zIndex: 1300,
+                    pointerEvents: 'none'
                   }}
                 />
                 <Box
@@ -541,13 +555,13 @@ const Page = () => {
           )
         }
           {
-            isIpadPro && (<>
+            isIpadPro && !isLaptopScreen &&  (<>
                 <Box
                   component="img"
                   src={`${WEB_URL}/laptop2.png`}
                   alt="laptop"
                   sx={{
-                    width: {md:'100%', xs: '70%', ipadPro: '70%' },
+                    width: '70%',
 
                     // width: { xl: '100%', lg: '70%', xs:'70%' , ipad:'60%', ipadPro:'65%'},
                     // display: 'block',

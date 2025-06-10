@@ -13,7 +13,7 @@ export const AccountPopover = (props) => {
     () => {
       onClose?.();
       auth.signOut();
-      router.push('/login');
+      router.push('/');
     },
     [onClose, auth, router]
   );
@@ -22,13 +22,18 @@ export const AccountPopover = (props) => {
     <Popover
       anchorEl={anchorEl}
       anchorOrigin={{
-        horizontal: 'left',
-        vertical: 'bottom'
+        vertical: 'bottom',
+        horizontal: 'left'
+      }}
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'left'
       }}
       onClose={onClose}
       open={open}
       PaperProps={{ sx: { width: 150 } }}
     >
+
       <Box
         sx={{
           py: 1.5,
