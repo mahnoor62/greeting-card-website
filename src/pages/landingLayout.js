@@ -52,15 +52,15 @@ export const LandingNav = () => {
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   // const [open, setOpen] = React.useState(false);
   const [toggle, setToggle] = useState(false);
-
+  const [registerOpen, setRegisterOpen] = React.useState(false);
   const [loading, setLoading] = useState(false);
   const { signIn, user, isAuthenticated } = useAuth();
   const isMounted = useMounted();
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
   const handleClose = () => {
     setOpen(false);
   };
@@ -116,10 +116,12 @@ export const LandingNav = () => {
       try {
         await signIn({ email: values.email, password: values.password });
         toast.success('Login successfully');
+        router.push('/checkout');
         formik.resetForm(); // Reset the form immediately
       } catch (err) {
         toast.error(err.message);
         formik.resetForm();
+        // setOpen(false);
         helpers.setStatus({ success: false });
         helpers.setErrors({ submit: err.message });
         helpers.setSubmitting(false);
@@ -133,11 +135,24 @@ export const LandingNav = () => {
 
 // register
 
-  const [registerOpen, setRegisterOpen] = React.useState(false);
+
+
+
+  const handleClickOpen = () => {
+    setRegisterOpen(false); // close register dialog if open
+    setOpen(true); // open login dialog
+  };
 
   const handleRegisterClickOpen = () => {
-    setRegisterOpen(true);
+    setOpen(false); // close login dialog if open
+    setRegisterOpen(true); // open register dialog
+    registerFormik.resetForm();
   };
+
+
+  // const handleRegisterClickOpen = () => {
+  //   setRegisterOpen(true);
+  // };
   const handleRegisterClose = () => {
     setRegisterOpen(false);
   };
@@ -164,10 +179,12 @@ export const LandingNav = () => {
           password: values.password
         });
         toast.success('Check your email for verification');
-        formik.resetForm(); // Reset the form immediately
+        setRegisterOpen(false)
+        registerFormik.resetForm(); // Reset the form immediately
       } catch (err) {
         toast.error(err.message);
-        formik.resetForm();
+        // setRegisterOpen(false)
+        registerFormik.resetForm();
         console.error(err);
         if (isMounted()) {
           helpers.setStatus({ success: false });
@@ -177,20 +194,11 @@ export const LandingNav = () => {
       }
       toast.dismiss(loading);
       setLoading(false);
+      setOpen(false);
 
     }
   });
 
-  // const handleLoginClick = () => {
-  //   router.push('/login?dialog=true'); // Yeh query use karenge login page me
-  // };
-  //
-  // useEffect(() => {
-  //   if (router.query.dialog === 'true') {
-  //     setOpen(true);
-  //     router.replace('/register', undefined, { shallow: true }); // URL saaf karne ke liye
-  //   }
-  // }, [router.query]);
 
   return (
     <>
@@ -392,11 +400,19 @@ export const LandingNav = () => {
           </Box>
         </Drawer>
       </Box>
+
       <React.Fragment>
         <BootstrapDialog
           onClose={handleClose}
           aria-labelledby="customized-dialog-title"
           open={open}
+          PaperProps={{
+            sx: {
+              width: '100%',
+              maxWidth: '400px' // Adjust to preferred fixed width
+            }
+          }}
+
         >
           <DialogTitle sx={{ m: 0, p: 2, pb: '0 !important' }} id="customized-dialog-title">
             Login<br/>
@@ -443,7 +459,7 @@ export const LandingNav = () => {
                 value={formik.values.email}
               />
               <TextField
-                sx={{ mt: 1 , mb:1}}
+                sx={{ mt: 1, mb: 1 }}
                 error={!!(formik.touched.password && formik.errors.password)}
                 fullWidth
                 helperText={formik.touched.password && formik.errors.password}
@@ -488,6 +504,12 @@ export const LandingNav = () => {
           onClose={handleRegisterClose}
           aria-labelledby="customized-dialog-title"
           open={registerOpen}
+          PaperProps={{
+            sx: {
+              width: '100%',
+              maxWidth: '400px' // Adjust to preferred fixed width
+            }
+          }}
         >
           <DialogTitle sx={{ m: 0, p: 2, pb: '0 !important' }} id="customized-dialog-title">
             Register<br/> <Typography
@@ -510,7 +532,7 @@ export const LandingNav = () => {
           </DialogTitle>
           <IconButton
             aria-label="close"
-            onClick={handleClose}
+            onClick={handleRegisterClose}
             sx={(theme) => ({
               position: 'absolute',
               right: 8,
@@ -549,7 +571,7 @@ export const LandingNav = () => {
                 value={registerFormik.values.email}
               />
               <TextField
-                sx={{ mt: 1 }}
+                sx={{ mt: 1, mb: 1 }}
                 error={!!(registerFormik.touched.password && registerFormik.errors.password)}
                 fullWidth
                 helperText={registerFormik.touched.password && registerFormik.errors.password}
