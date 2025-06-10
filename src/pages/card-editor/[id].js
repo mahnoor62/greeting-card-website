@@ -156,18 +156,19 @@ const Editor = () => {
 
 
         gameIframe.current.contentWindow.UploadVideo = async (gameObjectName, methodName, url) => {
-          // console.log('gameObjectName', gameObjectName);
-          // console.log('url', url);
-          // console.log('methodName', methodName);
+          console.log('gameObjectName', gameObjectName);
+          console.log('url', url);
+          console.log('methodName', methodName);
 
           try {
             const blobResponse = await fetch(url);
             const blob = await blobResponse.blob();
 
             // 2. Convert blob to a File object (you can give a meaningful filename)
-            const file = new File([blob], 'recorded-video.webm', {
-              type: blob.type || 'video/webm',
+            const file = new File([blob], 'recorded-video.mp4', {
+              type: blob.type || 'video/mp4',
             });
+
             const formData = new FormData();
             formData.append('id', cardData?._id);
             formData.append('video', file);
@@ -261,7 +262,7 @@ const Editor = () => {
                   window.UnityLoaded();
                 }
               }}
-              src={`${WEB_URL}/Game/index.html`}
+              src={`${WEB_URL}/game/index.html`}
               // title={data.title}
               frameBorder="0"
               style={{

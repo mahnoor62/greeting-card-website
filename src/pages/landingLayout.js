@@ -155,6 +155,7 @@ export const LandingNav = () => {
   // };
   const handleRegisterClose = () => {
     setRegisterOpen(false);
+    registerFormik.resetForm();
   };
 
   const registerFormik = useFormik({
