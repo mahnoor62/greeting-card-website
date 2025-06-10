@@ -261,7 +261,7 @@ const Editor = () => {
                   window.UnityLoaded();
                 }
               }}
-              src={`${WEB_URL}/game/index.html`}
+              src={`${WEB_URL}/Game/index.html`}
               // title={data.title}
               frameBorder="0"
               style={{
