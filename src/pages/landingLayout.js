@@ -198,8 +198,7 @@ export const LandingNav = () => {
 
     }
   });
-
-
+  
   return (
     <>
       <Box
