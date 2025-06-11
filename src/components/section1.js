@@ -480,6 +480,7 @@ const Page = () => {
                     // width: { xl: '70%', lg: '71%', xs: '55%'
                     width: '40%',
                     zIndex: 1300,
+                    pointerEvents: 'none'
                     // zIndex: 11,
                   }}
                 />
@@ -598,12 +599,13 @@ const Page = () => {
                   alt="card"
                   sx={{
                     position: 'absolute',
-                    right: '-23%',
+                    right: '-22%',
                     top: '30%',
                     transform: 'translate(-50%, -50%)',
                     // width: { xl: '70%', lg: '71%', xs: '55%'
-                    width: '50%',
+                    width: '45%',
                     zIndex: 1300,
+                    pointerEvents: 'none'
                     // zIndex: 11,
                   }}
                 />
@@ -619,6 +621,7 @@ const Page = () => {
                     // width: { xl: '70%', lg: '71%', xs: '55%'
                     width: '35%',
                     zIndex: 1300,
+                    pointerEvents: 'none'
                     // zIndex: 11,
                   }}
                 />
@@ -731,6 +734,7 @@ const Page = () => {
                     // width: { xl: '70%', lg: '71%', xs: '55%'
                     width: '80%',
                     zIndex: 1300,
+                    pointerEvents: 'none'
                     // zIndex: 11,
                   }}
                 />
@@ -862,6 +866,7 @@ const Page = () => {
                     // width: { xl: '70%', lg: '71%', xs: '55%'
                     width: '90%',
                     zIndex: 1300,
+                    pointerEvents: 'none'
                     // zIndex: 11,
                   }}
                 />

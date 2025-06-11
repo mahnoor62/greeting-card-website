@@ -28,7 +28,7 @@ const Page = () => {
                 Terms of Use
               </Typography>
               <Typography gutterBottom variant="h6" padding="10px" sx={{ textAlign: 'center' }}>
-                Welcome to Brand On Game
+                Welcome to Greetings Card
               </Typography>
               <Typography gutterBottom variant="h6" padding="10px" sx={{ textAlign: 'center' }}>
                 By using our website and purchasing our virtual products, you agree to the following

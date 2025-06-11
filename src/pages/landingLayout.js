@@ -135,9 +135,6 @@ export const LandingNav = () => {
 
 // register
 
-
-
-
   const handleClickOpen = () => {
     setRegisterOpen(false); // close register dialog if open
     setOpen(true); // open login dialog
@@ -148,7 +145,6 @@ export const LandingNav = () => {
     setRegisterOpen(true); // open register dialog
     registerFormik.resetForm();
   };
-
 
   // const handleRegisterClickOpen = () => {
   //   setRegisterOpen(true);
@@ -180,7 +176,7 @@ export const LandingNav = () => {
           password: values.password
         });
         toast.success('Check your email for verification');
-        setRegisterOpen(false)
+        setRegisterOpen(false);
         registerFormik.resetForm(); // Reset the form immediately
       } catch (err) {
         toast.error(err.message);
@@ -202,8 +198,89 @@ export const LandingNav = () => {
 
   return (
     <>
+      {/*<Box sx={{*/}
+      {/*  bgcolor: 'black',*/}
+      {/*  pl:'3%',pr:'3%',*/}
+      {/*  display: 'flex',*/}
+      {/*  justifyContent: 'space-between',*/}
+      {/*  alignItems: 'center',*/}
+      {/*  width: '100%'*/}
+      {/*}}>*/}
+      {/*  <NextLink href="/" passHref legacyBehavior>*/}
+      {/*    <Box sx={{*/}
+      {/*      width:350*/}
+      {/*    }}>*/}
+      {/*    <Box*/}
+      {/*      component="img"*/}
+      {/*      src={`${WEB_URL}/logo3.png`}*/}
+      {/*      alt="logo"*/}
+      {/*      sx={{*/}
+      {/*        bgcolor: 'yellow',*/}
+      {/*        width:'40%',*/}
+      {/*        pb: 2,*/}
+      {/*        height: 'auto'*/}
+      {/*      }}*/}
+      {/*    /></Box>*/}
+      {/*  </NextLink>*/}
+      {/*  <Typography*/}
+      {/*    gutterBottom*/}
+      {/*    variant="h3"*/}
+      {/*    // padding="10px"*/}
+      {/*    sx={{*/}
+      {/*      // height:'100%',*/}
+      {/*      bgcolor: 'red',*/}
+      {/*      // textAlign: 'center',*/}
+      {/*      fontWeight: 900,*/}
+      {/*      pt: 1,*/}
+      {/*      // ml: 10,*/}
+      {/*      color: '#c09b9b'*/}
+      {/*    }}*/}
+      {/*  >*/}
+      {/*    Greetings Card*/}
+      {/*  </Typography>*/}
+      {/*  <Box sx={{*/}
+      {/*    width:250,*/}
+      {/*    bgcolor: 'yellow',*/}
+      {/*    display: 'flex',*/}
+      {/*    justifyContent: 'center',*/}
+      {/*    gap: 2,*/}
+      {/*    alignItems: 'center',*/}
+      {/*    zIndex: 1400*/}
+      {/*  }}>*/}
+      {/*    <Link href={`${webUrl}contact`} passHref scroll={true}>*/}
+      {/*      <Button*/}
+      {/*        variant="outlined"*/}
+      {/*        sx={{*/}
+      {/*          borderRadius: '20px !important',*/}
+      {/*          borderColor: '#333333 !important',*/}
+      {/*          color: '#dcdbdb', // Optional: button text color same as border*/}
+      {/*          '&:hover': {*/}
+      {/*            borderColor: '#dcdbdb', // Keeps same color on hover*/}
+      {/*            backgroundColor: 'rgba(220, 219, 219, 0.1)' // Optional subtle hover*/}
+      {/*          }*/}
+      {/*        }}*/}
+      {/*      >*/}
+      {/*        Contact Us*/}
+      {/*      </Button>*/}
+      
+      {/*    </Link>*/}
+      {/*    /!*<Link href="/login">*!/*/}
+      {/*    <Button*/}
+      {/*      onClick={handleClickOpen}*/}
+      {/*      sx={{*/}
+      {/*        px: 3,*/}
+      {/*        borderRadius: '20px !important',*/}
+      {/*        backgroundColor: '#c165a0',*/}
+      {/*        color: 'white'*/}
+      {/*      }}*/}
+      {/*    >*/}
+      {/*      Log In*/}
+      {/*    </Button>*/}
+      {/*    /!*</Link>*!/*/}
+      {/*  </Box>*/}
+      {/*</Box>*/}
       <Box
-        component="header"
+        // component="header"
         sx={{
           // display:isContact ? 'none':'block',
           // bgcolor:'#d8c0ca',
@@ -218,10 +295,10 @@ export const LandingNav = () => {
         }}
       >
         {lgUp ? (
-          <Box sx={{ width: '100% !important', zIndex: 1400 }}>
+          <Box sx={{ width: '100% !important', zIndex: 1400, bgcolor: 'white' }}>
             <Box
               sx={{
-                // bgcolor:'yellow',
+                // bgcolor: 'white',
                 display: 'flex',
                 pl: '3%',
                 pr: '3%',
@@ -232,37 +309,37 @@ export const LandingNav = () => {
               }}
             >
               <NextLink href="/" passHref legacyBehavior>
+                <Box sx={{width:250, height:'1005', display:'flex', alignItems:'center'}}>
                 <Box
                   component="img"
                   src={`${WEB_URL}/logo3.png`}
                   alt="logo"
                   sx={{
-                    width: {
-                      xs: '10%',
-                      md: '10%',
-                      lg: '10%'
-                    },
+                    // bgcolor: 'yellow',
+                    width:'50%',
                     pb: 2,
                     height: 'auto'
                   }}
-                />
+                /></Box>
               </NextLink>
               <Typography
                 gutterBottom
                 variant="h3"
                 // padding="10px"
                 sx={{
-                  // bgcolor:'red',
-                  textAlign: 'center',
+                  // bgcolor: 'red',
+                  // textAlign: 'center',
                   fontWeight: 900,
                   pt: 1,
-                  ml: 10,
+                  // ml: 10,
                   color: '#c09b9b'
                 }}
               >
                 Greetings Card
               </Typography>
               <Box sx={{
+                width:250,
+                // bgcolor: 'yellow',
                 display: 'flex',
                 justifyContent: 'center',
                 gap: 2,

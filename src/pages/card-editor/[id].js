@@ -40,7 +40,7 @@ const Editor = () => {
         setLoading(true);
         const res = await axios.get(`${BASE_URL}/api/cards/get/data/${id}`);
         setData(res.data.data);
-        await saveCardCustomization();
+        await saveTemplateData();
         // const alreadySaved = localStorage.getItem(`customization_saved_${id}`);
         //
         // if (!alreadySaved) {
@@ -58,19 +58,20 @@ const Editor = () => {
       getFrontCardDetail();
     }, [id]);
 
-
-    const saveCardCustomization = async () => {
+    const saveTemplateData = async () => {
       try {
         const res = await axios.post(`${BASE_URL}/api/cards/upload-card-id`, {
           uuid: id
         });
 
         setCardData(res.data.data);
+        localStorage.setItem('userId', res?.data?.data?.userId);
       } catch (error) {
         console.log(error);
       }
     };
 
+    console.log('cardData', cardData);
 
     useEffect(() => {
       window.UnityLoaded = () => {
@@ -80,19 +81,9 @@ const Editor = () => {
     }, [data && window?.UnityLoaded]);
 
 
-  // function uint8ArrayToBinaryString(uint8Array) {
-  //   let binaryString = '';
-  //   for (let i = 0; i < uint8Array.length; i++) {
-  //     binaryString += String.fromCharCode(uint8Array[i]);
-  //   }
-  //   return binaryString;
-  // }
+  const userId = localStorage.getItem('userId');
 
-  // console.log("cardData?._id", cardData?._id);
-  // console.log("video", video);
-  // console.log("image", image);
-
-  const gameOnLoad = () => {
+    const gameOnLoad = () => {
       const instance = gameIframe.current?.contentWindow?.gameInstance;
 
       console.log('instance----', instance);
@@ -110,7 +101,7 @@ const Editor = () => {
 
         gameIframe.current.contentWindow.saveImage = async (array = [], int, index) => {
           console.log('🖼️ Received array:', array);
-          console.log("index",index);
+          console.log('index', index);
 
           try {
             // Convert the input array to Uint8Array
@@ -121,7 +112,7 @@ const Editor = () => {
 
             // Create FormData to send the image as a file
             const formData = new FormData();
-            formData.append('id', cardData?._id);
+            formData.append("userId", userId);
             formData.append('index', index);
             formData.append('image', blob, 'image.png'); // 'image.png' is filename
 
@@ -131,8 +122,8 @@ const Editor = () => {
               formData,
               {
                 headers: {
-                  'Content-Type': 'multipart/form-data',
-                },
+                  'Content-Type': 'multipart/form-data'
+                }
               }
             );
             const imagePath = response?.data?.data?.url;
@@ -140,7 +131,7 @@ const Editor = () => {
             // const imageUrl = `${BASE_URL}/${imagePath}?index=${index}`;
             setImage(imagePath);
 
-            console.log("imagePath", imagePath);
+            console.log('imagePath', imagePath);
             instance.SendMessage(
               'JsonDataHandlerAndParser',
               'LoadImage',
@@ -151,9 +142,6 @@ const Editor = () => {
             console.error('❌ Error uploading image:', error);
           }
         };
-
-
-
 
         gameIframe.current.contentWindow.UploadVideo = async (gameObjectName, methodName, url) => {
           console.log('gameObjectName', gameObjectName);
@@ -166,11 +154,11 @@ const Editor = () => {
 
             // 2. Convert blob to a File object (you can give a meaningful filename)
             const file = new File([blob], 'recorded-video.mp4', {
-              type: blob.type || 'video/mp4',
+              type: blob.type || 'video/mp4'
             });
 
             const formData = new FormData();
-            formData.append('id', cardData?._id);
+            formData.append('userId', userId);
             formData.append('video', file);
 
             // Send POST request with multipart/form-data
@@ -179,8 +167,8 @@ const Editor = () => {
               formData,
               {
                 headers: {
-                  'Content-Type': 'multipart/form-data',
-                },
+                  'Content-Type': 'multipart/form-data'
+                }
               }
             );
             const videoPath = response?.data?.data?.url;
@@ -192,20 +180,16 @@ const Editor = () => {
               JSON.stringify(videoPath)
             );
 
-            console.log("videoPath save into db", videoPath);
+            console.log('videoPath save into db', videoPath);
             // console.log('✅ Image uploaded successfully:', response);
           } catch (error) {
             console.error('❌ Error uploading video:', error);
           }
         };
 
-
-
-
-
         //unity developer call this function to send data to me  not in instance this function is call in window
         gameIframe.current.contentWindow.saveData = async (json) => {
-          console.log('Edited Data:', json);
+          console.log(`Edited Data of ${userId}:`, json);
           localStorage.setItem('savedData', JSON.stringify({
             data: json
           }));
@@ -213,7 +197,6 @@ const Editor = () => {
 
       }
     };
-
 
     return (
       <>

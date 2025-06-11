@@ -88,3 +88,8 @@ const App = (props) => {
 };
 
 export default App;
+
+
+// NEXT_PUBLIC_APP_NAME="Greetings Card"
+// NEXT_PUBLIC_API_BASE_URL=https://greetings-card-apis.tecshield.net
+// NEXT_PUBLIC_WEB_URL=https://greetings-card-website.tecshield.net
