@@ -467,9 +467,9 @@ export const LandingNav = () => {
           }}
 
         >
-          <DialogTitle sx={{ m: 0, p: 2, pb: '0 !important' }} id="customized-dialog-title">
+          <DialogTitle sx={{ m: 0, p: 2, pb: '0 !important' , pt:'0 !important'}} id="customized-dialog-title">
             <Box sx={{ width: '100%', typography: 'body1' }}>
-              <TabContext value={value}>
+              <TabContext value={value} >
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                   <TabList onChange={handleChange} aria-label="lab API tabs example">
                     <Tab label="Sign Up" value="1" />
@@ -489,7 +489,7 @@ export const LandingNav = () => {
                   </TabList>
                 </Box>
 
-                <TabPanel value="1" sx={{ pl:'0 !important', pr:'0 !important'}}>
+                <TabPanel value="1" sx={{ pl:'0 !important', pr:'0 !important', pb:0}}>
                   <form
                     noValidate
                     onSubmit={registerFormik.handleSubmit}
@@ -543,7 +543,7 @@ export const LandingNav = () => {
                   </form>
                 </TabPanel>
 
-                <TabPanel value="2" sx={{ pl:0, pr:0}}>
+                <TabPanel value="2" sx={{ pl:0, pr:0, pb:0}}>
                   {/*Login<br/>*/}
                   <Box sx={{ display: 'flex', width: '100%'}}>
                     <Typography color="text.secondary" variant="body2" sx={{ pl:0.3 }}>
