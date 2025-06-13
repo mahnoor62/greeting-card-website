@@ -2,6 +2,8 @@ import { createContext, useContext, useEffect, useReducer, useRef } from 'react'
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import { useLoginModal } from '../contexts/loginContext';
+import { useVerifyModal } from './verifyContext';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -61,6 +63,8 @@ const reducer = (state, action) => (
 export const AuthContext = createContext({ undefined });
 
 export const AuthProvider = (props) => {
+  const { closeLogin: handleClose, setOpen } = useLoginModal();
+  const { openVerify, setVerifyOpen } = useVerifyModal();
   const router = useRouter();
   const { children } = props;
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -87,7 +91,6 @@ export const AuthProvider = (props) => {
             }
           }
         );
-
         delete response.data.data.token;
 
         dispatch({
@@ -115,13 +118,44 @@ export const AuthProvider = (props) => {
     []
   );
 
-  const signIn = async ({ email, password }) => {
+  // const signIn = async ({ email, password }) => {
+  //
+  //   try {
+  //     const response = await axios.post(API_BASE_URL + '/api/user/login',
+  //       {
+  //         email,
+  //         password
+  //       },
+  //       {
+  //         headers: {
+  //           'Content-Type': 'application/json'
+  //         }
+  //       }
+  //     );
+  //
+  //     localStorage.setItem('token', response.data.data.token);
+  //
+  //     dispatch({
+  //       type: HANDLERS.SIGN_IN,
+  //       payload: response.data.data
+  //     });
+  //   } catch (error) {
+  //     console.log('error in sign in', error);
+  //     throw new Error(error.response.data.msg);
+  //   }
+  // };
 
+  const signIn = async ({ email, method }) => {
+    // const storedEmail = window.localStorage.getItem('email');
+    // const loginEmail = email || storedEmail;
+    //
+    // if (!loginEmail) {
+    //   throw new Error('No email provided');
+    // }
     try {
-      const response = await axios.post(API_BASE_URL + '/api/user/login',
+      const response = await axios.post(API_BASE_URL + `/api/user/login`,
         {
-          email,
-          password
+          email
         },
         {
           headers: {
@@ -129,9 +163,11 @@ export const AuthProvider = (props) => {
           }
         }
       );
-
-      localStorage.setItem('token', response.data.data.token);
-
+      const uniqueId = response.data.data;
+      // check for email login with input than redirect otherwise not
+      if (method === 'email') {
+        openVerify(uniqueId); // ✅ open modal with token
+      }
       dispatch({
         type: HANDLERS.SIGN_IN,
         payload: response.data.data
@@ -150,7 +186,7 @@ export const AuthProvider = (props) => {
         {
           name,
           email,
-          password
+          // password
         },
         {
           headers: {
@@ -166,8 +202,11 @@ export const AuthProvider = (props) => {
   };
 
   const signOut = () => {
+
     localStorage.removeItem('token');
     router.push('/');
+    setOpen(false);
+    setVerifyOpen(false);
     dispatch({
       type: HANDLERS.SIGN_OUT
     });

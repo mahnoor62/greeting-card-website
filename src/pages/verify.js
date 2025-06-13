@@ -91,7 +91,7 @@ export default function Page() {
                    style={{ height: 50 }}/>
             </Box>
             <Typography variant="h5" component="div"
-                        sx={{ display: 'flex', justifyContent: 'center', mt:5 }}>
+                        sx={{ display: 'flex', justifyContent: 'center', mt:3, mb:2 }}>
               {
                 loading ? 'Verification In Process...' : 'Account Verified'
               }
@@ -100,18 +100,18 @@ export default function Page() {
               loading && <Box sx={{ textAlign: 'center', mt: 5 }}><CircularProgress/></Box>
             }
           </CardContent>
-          <CardActions sx={{ display: 'flex', justifyContent: 'center' , mb:5}}>
-            <NextLink href={'/login'}>
-              <Button variant="contained" disabled={loading} sx={{
-                // backgroundColor: '#c165a0',
-                '&:hover': {
-                  // borderColor: '#dcdbdb', // Keeps same color on hover
-                  backgroundColor: '#c165a0' // Optional subtle hover
-                }
-              }} fullWidth>Login</Button>
-            </NextLink>
+          {/*<CardActions sx={{ display: 'flex', justifyContent: 'center' , mb:5}}>*/}
+          {/*  <NextLink href={'/login'}>*/}
+          {/*    <Button variant="contained" disabled={loading} sx={{*/}
+          {/*      // backgroundColor: '#c165a0',*/}
+          {/*      '&:hover': {*/}
+          {/*        // borderColor: '#dcdbdb', // Keeps same color on hover*/}
+          {/*        backgroundColor: '#c165a0' // Optional subtle hover*/}
+          {/*      }*/}
+          {/*    }} fullWidth>Login</Button>*/}
+          {/*  </NextLink>*/}
 
-          </CardActions>
+          {/*</CardActions>*/}
         </Card>
       </Box>
     </Box>

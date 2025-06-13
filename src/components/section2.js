@@ -362,8 +362,9 @@ const Section2 = () => {
 
                   <Stack spacing={2}>
                     <Pagination
-                      hidePrevButton
-                      hideNextButton count={totalPages} page={currentPage}
+                      // hidePrevButton
+                      // hideNextButton
+                      count={totalPages} page={currentPage}
                       onChange={handlePageChange}
                       sx={{
                         '& .MuiPaginationItem-root': {

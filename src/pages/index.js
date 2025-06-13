@@ -43,10 +43,6 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 const WEB_URL = process.env.NEXT_PUBLIC_WEB_URL;
 const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME;
 
-
-
-
-
 const Page = () => {
 
   return (

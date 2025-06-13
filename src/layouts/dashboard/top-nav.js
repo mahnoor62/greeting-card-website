@@ -32,6 +32,7 @@ export const TopNav = (props) => {
   const { onNavOpen } = props;
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const accountPopover = usePopover();
+  const popoverId = accountPopover.open ? 'simple-popover' : undefined;
   const [open, setOpen] = React.useState(false);
 
 
@@ -43,16 +44,20 @@ export const TopNav = (props) => {
         // position="relative"
         component="header"
         sx={{
-          backdropFilter: 'blur(6px)',
-          backgroundColor: '#2f2f2f',
-          position: 'sticky',
-          top: 0,
-          paddingTop: 2,
-          paddingBottom: 2,
-          zIndex: (theme) => theme.zIndex.appBar
+          // backdropFilter: 'blur(6px)',
+          backgroundColor: '#1a1d25 !important',
+          width: '100% !important',
+          position: 'fixed',
+          pt: 0,
+          top: 0
+          // position: 'sticky',
+          // top: 0,
+          // paddingTop: 2,
+          // paddingBottom: 2,
+          // zIndex: (theme) => theme.zIndex.appBar
         }}
       >
-        <Container>
+        <Box sx={{pl:'3%', pr:'3%'}}>
           <Stack
             alignItems="center"
             direction="row"
@@ -76,16 +81,6 @@ export const TopNav = (props) => {
             {/*<img src={`${WEB_URL}/logo3.png`} alt="Logo" style={{ height: 80, paddingBottom: 5 }}/>*/}
             {lgUp ? (
               <>
-                {/*<Button*/}
-                {/*  startIcon={*/}
-                {/*    <SvgIcon>*/}
-                {/*      <ArrowBackIcon/>*/}
-                {/*    </SvgIcon>*/}
-                {/*  }*/}
-                {/*  onClick={() => router.back()}*/}
-                {/*  sx={{ position: 'absolute', left: 0 }}*/}
-                {/*></Button>*/}
-                {/*<NextLink href="/contact">*/}
                 <img src={`${WEB_URL}/logo3.png`} alt="Logo"
                      style={{ height: 50, paddingBottom: 5 }}/>
                 {/*</NextLink>*/}
@@ -94,43 +89,25 @@ export const TopNav = (props) => {
                   direction="row"
                   spacing={2}
                 >
-
-                  {/*<NextLink href="/dashboard">*/}
-                  {/*  <Button*/}
-                  {/*    startIcon={*/}
-                  {/*      <SvgIcon>*/}
-                  {/*        <ChartBarIcon/>*/}
-                  {/*      </SvgIcon>*/}
-                  {/*    }*/}
-                  {/*  >*/}
-                  {/*    Dashboard*/}
-                  {/*  </Button>*/}
-                  {/*</NextLink>*/}
-                  {/*<NextLink href="/players">*/}
-                  {/*  <Button*/}
-                  {/*    startIcon={*/}
-                  {/*      <SvgIcon>*/}
-                  {/*        <AccessibilityIcon/>*/}
-                  {/*      </SvgIcon>*/}
-                  {/*    }*/}
-                  {/*  >*/}
-                  {/*    Players*/}
-                  {/*  </Button>*/}
-                  {/*</NextLink>*/}
-                  {/*<NextLink href="/account">*/}
-                  {/*  <Button*/}
-                  {/*    startIcon={*/}
-                  {/*      <SvgIcon>*/}
-                  {/*        <UserIcon/>*/}
-                  {/*      </SvgIcon>*/}
-                  {/*    }*/}
-                  {/*  >*/}
-                  {/*    Account*/}
-                  {/*  </Button>*/}
-                  {/*</NextLink>*/}
+                  {/*<Avatar*/}
+                  {/*  onClick={accountPopover.handleOpen}*/}
+                  {/*  ref={accountPopover.anchorRef}*/}
+                  {/*  sx={{*/}
+                  {/*    cursor: 'pointer',*/}
+                  {/*    height: 40,*/}
+                  {/*    width: 40*/}
+                  {/*  }}*/}
+                  {/*  src={`${WEB_URL}/blank-profile.webp`}*/}
+                  {/*/>*/}
+                  {/*<AccountPopover*/}
+                  {/*  anchorEl={accountPopover.anchorRef.current}*/}
+                  {/*  open={accountPopover.open}*/}
+                  {/*  onClose={accountPopover.handleClose}*/}
+                  {/*/>*/}
                   <Avatar
-                    onClick={accountPopover.handleOpen}
+                    id={popoverId}
                     ref={accountPopover.anchorRef}
+                    onClick={accountPopover.handleOpen}
                     sx={{
                       cursor: 'pointer',
                       height: 40,
@@ -138,11 +115,13 @@ export const TopNav = (props) => {
                     }}
                     src={`${WEB_URL}/blank-profile.webp`}
                   />
+
                   <AccountPopover
                     anchorEl={accountPopover.anchorRef.current}
                     open={accountPopover.open}
                     onClose={accountPopover.handleClose}
                   />
+
                 </Stack>
               </>
             ) : (
@@ -163,7 +142,7 @@ export const TopNav = (props) => {
               </Box>
             )}
           </Stack>
-        </Container>
+        </Box>
       </Box>
       <Collapse in={!lgUp && open}>
         <>

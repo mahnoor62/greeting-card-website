@@ -52,7 +52,7 @@ const Page = () => {
           Checkout | {APP_NAME}
         </title>
       </Head>
-      <Container sx={{ my: '50px' }}>
+      <Container sx={{ my: '100px' }}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <Box display="flex" justifyContent="space-between" alignItems="center">

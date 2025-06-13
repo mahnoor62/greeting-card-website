@@ -18,11 +18,11 @@
     </div>
   </div>
   <div id="unity-warning"> </div>
-  <div id="unity-footer">
-    <div id="unity-logo-title-footer"></div>
-    <div id="unity-fullscreen-button"></div>
-    <div id="unity-build-title">My project</div>
-  </div>
+<!--  <div id="unity-footer">-->
+<!--    <div id="unity-logo-title-footer"></div>-->
+<!--    <div id="unity-fullscreen-button"></div>-->
+<!--    <div id="unity-build-title">My project</div>-->
+<!--  </div>-->
 </div>
 <div id="shade"></div>
 <div id="message">Please open the editor on a desktop device.</div>
@@ -110,9 +110,9 @@
     }).then((unityInstance) => {
       gameInstance = unityInstance;
       document.querySelector("#unity-loading-bar").style.display = "none";
-      document.querySelector("#unity-fullscreen-button").onclick = () => {
-        unityInstance.SetFullscreen(1);
-      };
+      // document.querySelector("#unity-fullscreen-button").onclick = () => {
+      //   unityInstance.SetFullscreen(1);
+      // };
 
       if (window.parent && window.parent.UnityLoaded) {
         window.parent.UnityLoaded();

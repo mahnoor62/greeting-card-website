@@ -384,7 +384,7 @@ const PopularCards = () => {
                 boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.2)',
                 '&:hover': {
                   backgroundColor: '#c165a0',
-                  boxShadow: '0px 6px 16px white',
+                //   boxShadow: '0px 6px 16px white',
                 },
               }}
             >

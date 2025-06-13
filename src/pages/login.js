@@ -41,65 +41,65 @@ const Page = () => {
   const { signIn, user, isAuthenticated } = useAuth();
   const isMounted = useMounted();
 
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
+  //
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
+  //
+  //
+  // const handleRegisterClick = () => {
+  //   router.push('/register?dialog=true'); // Yeh query use karenge login page me
+  // };
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
 
-
-  const handleRegisterClick = () => {
-    router.push('/register?dialog=true'); // Yeh query use karenge login page me
-  };
-
-
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-      submit: null
-    },
-    validationSchema: Yup.object({
-      email: Yup
-        .string()
-        .email('Must be a valid email')
-        .max(255)
-        .required('Email is required'),
-      password: Yup
-        .string()
-        .max(255)
-        .required('Password is required')
-    }),
-    onSubmit: async (values, helpers) => {
-      const loading = toast.loading('login in process...');
-      setLoading(true);
-      try {
-        await signIn({ email: values.email, password: values.password });
-        toast.success('Login successfully');
-        formik.resetForm(); // Reset the form immediately
-      } catch (err) {
-        toast.error(err.message);
-        formik.resetForm();
-        helpers.setStatus({ success: false });
-        helpers.setErrors({ submit: err.message });
-        helpers.setSubmitting(false);
-
-      }
-      toast.dismiss(loading);
-      setLoading(false);
-    }
-
-  });
-
-  useEffect(() => {
-    if (router.query.dialog === 'true') {
-      setOpen(true);
-      router.replace('/login', undefined, { shallow: true }); // URL saaf karne ke liye
-    }
-  }, [router.query]);
+  // const formik = useFormik({
+  //   initialValues: {
+  //     email: '',
+  //     password: '',
+  //     submit: null
+  //   },
+  //   validationSchema: Yup.object({
+  //     email: Yup
+  //       .string()
+  //       .email('Must be a valid email')
+  //       .max(255)
+  //       .required('Email is required'),
+  //     password: Yup
+  //       .string()
+  //       .max(255)
+  //       .required('Password is required')
+  //   }),
+  //   onSubmit: async (values, helpers) => {
+  //     const loading = toast.loading('login in process...');
+  //     setLoading(true);
+  //     try {
+  //       await signIn({ email: values.email, password: values.password });
+  //       toast.success('Login successfully');
+  //       formik.resetForm(); // Reset the form immediately
+  //     } catch (err) {
+  //       toast.error(err.message);
+  //       formik.resetForm();
+  //       helpers.setStatus({ success: false });
+  //       helpers.setErrors({ submit: err.message });
+  //       helpers.setSubmitting(false);
+  //
+  //     }
+  //     toast.dismiss(loading);
+  //     setLoading(false);
+  //   }
+  //
+  // });
+  //
+  // useEffect(() => {
+  //   if (router.query.dialog === 'true') {
+  //     setOpen(true);
+  //     router.replace('/login', undefined, { shallow: true }); // URL saaf karne ke liye
+  //   }
+  // }, [router.query]);
 
 
 

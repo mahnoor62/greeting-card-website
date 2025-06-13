@@ -14,12 +14,15 @@ import toast from 'react-hot-toast';
 import axios from 'axios';
 import LandingNav from '../landingLayout';
 import { useRouter } from 'next/router';
+import { useLoginModal } from '../../contexts/loginContext';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 const WEB_URL = process.env.NEXT_PUBLIC_WEB_URL;
 import NextLink from 'next/link';
 
+
 const Editor = () => {
+    const { openLogin } = useLoginModal();
     const theme = useTheme();
     const router = useRouter();
     const { id } = router.query;
@@ -34,20 +37,22 @@ const Editor = () => {
     const [loading, setLoading] = useState(false);
     const [image, setImage] = useState(null);
     const [video, setVideo] = useState(null);
+    const [userTemplateData, setUserTemplateData] = useState(null);
 
     const getFrontCardDetail = async () => {
       try {
         setLoading(true);
         const res = await axios.get(`${BASE_URL}/api/cards/get/data/${id}`);
         setData(res.data.data);
-        await saveTemplateData();
-        // const alreadySaved = localStorage.getItem(`customization_saved_${id}`);
-        //
-        // if (!alreadySaved) {
-        //   await saveCardCustomization();
-        //   localStorage.setItem(`customization_saved_${id}`, 'true');
-        // }
 
+        localStorage.setItem('cardId', res?.data?.data?.uuid);
+        const userId = localStorage.getItem(`userId-${id}`);
+
+        if (!userId) {
+          await createTemplateData();
+          // userId = localStorage.getItem(`userId-${id}`); // get the updated value
+        }
+        await getUserTemplateDesignData();
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -55,33 +60,45 @@ const Editor = () => {
     };
 
     useEffect(() => {
+      if (!id) {
+        return;
+      }
       getFrontCardDetail();
     }, [id]);
 
-    const saveTemplateData = async () => {
+    const getUserTemplateDesignData = async () => {
+      const userId = localStorage.getItem(`userId-${id}`);
+      try {
+        const res = await axios.get(`${BASE_URL}/api/cards/get/${userId}`);
+        setUserTemplateData(res?.data?.data);
+      } catch (error) {
+        console.log('error in get user design template data =======>', error);
+
+      }
+    };
+
+    console.log('userTemplateData', userTemplateData);
+
+    const createTemplateData = async () => {
       try {
         const res = await axios.post(`${BASE_URL}/api/cards/upload-card-id`, {
           uuid: id
         });
-
         setCardData(res.data.data);
-        localStorage.setItem('userId', res?.data?.data?.userId);
+        localStorage.setItem(`userId-${id}`, res?.data?.data?.userId);
+
       } catch (error) {
         console.log(error);
       }
     };
 
-    console.log('cardData', cardData);
-
     useEffect(() => {
       window.UnityLoaded = () => {
         console.log('Unity is loaded and ready from web');
         gameOnLoad();
+        getUserTemplateDesignData();
       };
     }, [data && window?.UnityLoaded]);
-
-
-  const userId = localStorage.getItem('userId');
 
     const gameOnLoad = () => {
       const instance = gameIframe.current?.contentWindow?.gameInstance;
@@ -99,9 +116,17 @@ const Editor = () => {
           JSON.stringify(data)
         );
 
+        instance.SendMessage(
+          'JsonDataHandlerAndParser',
+          'LoadSavedData',
+          JSON.stringify(userTemplateData)
+        );
+
         gameIframe.current.contentWindow.saveImage = async (array = [], int, index) => {
           console.log('🖼️ Received array:', array);
           console.log('index', index);
+
+          const userId = localStorage.getItem(`userId-${id}`);
 
           try {
             // Convert the input array to Uint8Array
@@ -112,7 +137,7 @@ const Editor = () => {
 
             // Create FormData to send the image as a file
             const formData = new FormData();
-            formData.append("userId", userId);
+            formData.append('userId', userId);
             formData.append('index', index);
             formData.append('image', blob, 'image.png'); // 'image.png' is filename
 
@@ -127,10 +152,15 @@ const Editor = () => {
               }
             );
             const imagePath = response?.data?.data?.url;
+
+            // const userTemplateId = response?.data?.data?.card?.userId;
+            // setUserTemplateId(userTemplateId);
+            // localStorage.setItem('userTemplateId', userTemplateId);
+
             // Construct full image URL with index as a query param
             // const imageUrl = `${BASE_URL}/${imagePath}?index=${index}`;
             setImage(imagePath);
-
+            setUserTemplateData(response?.data?.data?.card);
             console.log('imagePath', imagePath);
             instance.SendMessage(
               'JsonDataHandlerAndParser',
@@ -148,6 +178,7 @@ const Editor = () => {
           console.log('url', url);
           console.log('methodName', methodName);
 
+          const userId = localStorage.getItem(`userId-${id}`);
           try {
             const blobResponse = await fetch(url);
             const blob = await blobResponse.blob();
@@ -181,6 +212,8 @@ const Editor = () => {
             );
 
             console.log('videoPath save into db', videoPath);
+            ;
+            setUserTemplateData(response?.data?.data?.card);
             // console.log('✅ Image uploaded successfully:', response);
           } catch (error) {
             console.error('❌ Error uploading video:', error);
@@ -189,10 +222,12 @@ const Editor = () => {
 
         //unity developer call this function to send data to me  not in instance this function is call in window
         gameIframe.current.contentWindow.saveData = async (json) => {
+          const userId = localStorage.getItem(`userId-${id}`);
           console.log(`Edited Data of ${userId}:`, json);
           localStorage.setItem('savedData', JSON.stringify({
             data: json
           }));
+          openLogin();
         };
 
       }
@@ -222,20 +257,6 @@ const Editor = () => {
         }}>
           <LandingNav/>
           <Box sx={{ width: '100%', height: '100%' }}>
-            {/*<NextLink href="/login" passHref legacyBehavior>*/}
-            {/*  <Button size="large" sx={{*/}
-            {/*    // backgroundColor: '#ffecc8',*/}
-            {/*    // backgroundColor: '#1a1d25 !important',*/}
-            {/*    // color: '#c09b9b',*/}
-            {/*    // boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',*/}
-            {/*    // '&:hover': {*/}
-            {/*    //   backgroundColor: '#1a1d25 !important',*/}
-            {/*    //   color: '#c09b9b'*/}
-            {/*    // }*/}
-            {/*  }}>*/}
-            {/*    Save*/}
-            {/*  </Button>*/}
-            {/*</NextLink>*/}
             <iframe
               // onLoad={gameIframe}
               ref={gameIframe}

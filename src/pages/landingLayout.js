@@ -9,6 +9,7 @@ import {
   Container,
   Collapse, Typography, Drawer, TextField, CircularProgress
 } from '@mui/material';
+import axios from 'axios';
 import Button from '@mui/material/Button';
 import NextLink from 'next/link';
 import Link from 'next/link';
@@ -30,9 +31,22 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
+import { useLoginModal } from '../contexts/loginContext';
+import { useVerifyModal } from '../contexts/verifyContext';
+import Tab from '@mui/material/Tab';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
+
+
+
+
+
+
 
 const TOP_NAV_HEIGHT = 64;
 let WEB_URL = process.env.NEXT_PUBLIC_WEB_URL;
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -45,25 +59,41 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
 export const LandingNav = () => {
   const router = useRouter();
-  const { signUp } = useAuth();
+  const [value, setValue] = React.useState('1');
+  const { open, closeLogin: handleClose, openLogin: handleClickOpen, setOpen } = useLoginModal();
+  const {
+    verifyOpen,
+    openVerify,
+    handleVerifyClose: closeVerify,
+    verifyToken, setVerifyOpen
+  } = useVerifyModal();
   const pathname = router.pathname;
   const isContact = pathname === '#contact';
   // const [isScrolled, setIsScrolled] = useState(false);
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   // const [open, setOpen] = React.useState(false);
   const [toggle, setToggle] = useState(false);
-  const [registerOpen, setRegisterOpen] = React.useState(false);
+  // const [verifyOpen, setVerifyOpen] = React.useState(false);
   const [loading, setLoading] = useState(false);
-  const { signIn, user, isAuthenticated } = useAuth();
+  const { signIn, user, isAuthenticated, signUp } = useAuth();
   const isMounted = useMounted();
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
 
   // const handleClickOpen = () => {
   //   setOpen(true);
   // };
-  const handleClose = () => {
-    setOpen(false);
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
+
+
+
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
   };
+
+
 
   const toggleDrawer = (state) => () => {
     setToggle(state);
@@ -77,26 +107,9 @@ export const LandingNav = () => {
 
   }
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     if (window.scrollY > window.innerHeight * 0.10) {
-  //       setIsScrolled(true);
-  //     } else {
-  //       setIsScrolled(false);
-  //     }
-  //   };
-  //
-  //   window.addEventListener('scroll', handleScroll);
-  //
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, []);
-
   const formik = useFormik({
     initialValues: {
       email: '',
-      password: '',
       submit: null
     },
     validationSchema: Yup.object({
@@ -104,22 +117,24 @@ export const LandingNav = () => {
         .string()
         .email('Must be a valid email')
         .max(255)
-        .required('Email is required'),
-      password: Yup
-        .string()
-        .max(255)
-        .required('Password is required')
+        .required('Email is required')
+
     }),
     onSubmit: async (values, helpers) => {
-      const loading = toast.loading('login in process...');
+      const loading = toast.loading(
+        'Login verification code sent to your email. Please check your inbox.', { duration: 15000 });
+      // const loading = toast.loading('login in process...');
       setLoading(true);
       try {
-        await signIn({ email: values.email, password: values.password });
-        toast.success('Login successfully');
-        router.push('/checkout');
+        await signIn({ email: values.email, method: 'email' });
+        // await signIn({ email: values.email, password: values.password });
+        // toast.success('Login successfully');
+        // router.push('/checkout');
         formik.resetForm(); // Reset the form immediately
+        handleClose();
       } catch (err) {
-        toast.error(err.message);
+        console.log('err', err);
+        toast.error(err.message, { duration: 5000 });
         formik.resetForm();
         // setOpen(false);
         helpers.setStatus({ success: false });
@@ -133,53 +148,104 @@ export const LandingNav = () => {
 
   });
 
+  // login verification
+  const loginvVeriformik = useFormik({
+    initialValues: {
+      code: '',
+      unique_id: '',
+      submit: null
+    },
+    validationSchema: Yup.object({
+      code: Yup
+        .string()
+        .max(255)
+        .required('Verification code is required')
+    }),
+    onSubmit: async (values, helpers) => {
+      // const loading = toast.loading('Verification in process...');
+
+      setLoading(true);
+      try {
+
+        const response = await axios.post(API_BASE_URL + '/api/user/login/verify',
+          {
+            code: values.code,
+            unique_id: verifyToken
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
+        );
+        toast.success('Login successfully....');
+        // const transactionID = localStorage.getItem('transactionId');
+        // localStorage.removeItem('transactionId');
+        // if (transactionID) {
+        //   router.push(`/account?transactionId=${transactionID}`);
+        //
+        // } else {
+        //
+        //   router.push('/');
+        // }
+
+        router.push('/checkout');
+        localStorage.setItem('token', response.data.data.token);
+
+      } catch (error) {
+        console.log(error);
+
+        toast.error(error.response.data.msg);
+        setLoading(false);
+      }
+    }
+  });
+
 // register
 
-  const handleClickOpen = () => {
-    setRegisterOpen(false); // close register dialog if open
-    setOpen(true); // open login dialog
-  };
+  // const handleClickOpen = () => {
+  //   setRegisterOpen(false); // close register dialog if open
+  //   setOpen(true); // open login dialog
+  // };
 
-  const handleRegisterClickOpen = () => {
-    setOpen(false); // close login dialog if open
-    setRegisterOpen(true); // open register dialog
-    registerFormik.resetForm();
-  };
+  // const handleRegisterClickOpen = () => {
+  //   setOpen(false); // close login dialog if open
+  //   setRegisterOpen(true); // open register dialog
+  //   registerFormik.resetForm();
+  // };
 
   // const handleRegisterClickOpen = () => {
   //   setRegisterOpen(true);
   // };
-  const handleRegisterClose = () => {
-    setRegisterOpen(false);
-    registerFormik.resetForm();
+  const handleVerifyClose = () => {
+    setVerifyOpen(false);
+    loginvVeriformik.resetForm();
+    setOpen(false);
   };
 
   const registerFormik = useFormik({
     initialValues: {
       name: '',
       email: '',
-      password: '',
       submit: null
     },
     validationSchema: Yup.object({
       name: Yup.string().required('Name is required'),
       email: Yup.string().required('Email is required').email('Email is invalid'),
-      password: Yup.string().required('Password is required')
     }),
     onSubmit: async (values, helpers) => {
-      const loading = toast.loading('Registration in process...');
+      const loading = toast.loading('Registration in process...',  { duration: 5000 });
       setLoading(true);
       try {
         await signUp({
           name: values.name,
           email: values.email,
-          password: values.password
         });
-        toast.success('Check your email for verification');
-        setRegisterOpen(false);
+        toast.success('Please check your email for verification', { duration: 5000 });
+        // setRegisterOpen(false);
         registerFormik.resetForm(); // Reset the form immediately
       } catch (err) {
-        toast.error(err.message);
+        toast.error(err.message, { duration: 5000 });
         // setRegisterOpen(false)
         registerFormik.resetForm();
         console.error(err);
@@ -191,94 +257,13 @@ export const LandingNav = () => {
       }
       toast.dismiss(loading);
       setLoading(false);
-      setOpen(false);
+      // setOpen(false);
 
     }
   });
 
   return (
     <>
-      {/*<Box sx={{*/}
-      {/*  bgcolor: 'black',*/}
-      {/*  pl:'3%',pr:'3%',*/}
-      {/*  display: 'flex',*/}
-      {/*  justifyContent: 'space-between',*/}
-      {/*  alignItems: 'center',*/}
-      {/*  width: '100%'*/}
-      {/*}}>*/}
-      {/*  <NextLink href="/" passHref legacyBehavior>*/}
-      {/*    <Box sx={{*/}
-      {/*      width:350*/}
-      {/*    }}>*/}
-      {/*    <Box*/}
-      {/*      component="img"*/}
-      {/*      src={`${WEB_URL}/logo3.png`}*/}
-      {/*      alt="logo"*/}
-      {/*      sx={{*/}
-      {/*        bgcolor: 'yellow',*/}
-      {/*        width:'40%',*/}
-      {/*        pb: 2,*/}
-      {/*        height: 'auto'*/}
-      {/*      }}*/}
-      {/*    /></Box>*/}
-      {/*  </NextLink>*/}
-      {/*  <Typography*/}
-      {/*    gutterBottom*/}
-      {/*    variant="h3"*/}
-      {/*    // padding="10px"*/}
-      {/*    sx={{*/}
-      {/*      // height:'100%',*/}
-      {/*      bgcolor: 'red',*/}
-      {/*      // textAlign: 'center',*/}
-      {/*      fontWeight: 900,*/}
-      {/*      pt: 1,*/}
-      {/*      // ml: 10,*/}
-      {/*      color: '#c09b9b'*/}
-      {/*    }}*/}
-      {/*  >*/}
-      {/*    Greetings Card*/}
-      {/*  </Typography>*/}
-      {/*  <Box sx={{*/}
-      {/*    width:250,*/}
-      {/*    bgcolor: 'yellow',*/}
-      {/*    display: 'flex',*/}
-      {/*    justifyContent: 'center',*/}
-      {/*    gap: 2,*/}
-      {/*    alignItems: 'center',*/}
-      {/*    zIndex: 1400*/}
-      {/*  }}>*/}
-      {/*    <Link href={`${webUrl}contact`} passHref scroll={true}>*/}
-      {/*      <Button*/}
-      {/*        variant="outlined"*/}
-      {/*        sx={{*/}
-      {/*          borderRadius: '20px !important',*/}
-      {/*          borderColor: '#333333 !important',*/}
-      {/*          color: '#dcdbdb', // Optional: button text color same as border*/}
-      {/*          '&:hover': {*/}
-      {/*            borderColor: '#dcdbdb', // Keeps same color on hover*/}
-      {/*            backgroundColor: 'rgba(220, 219, 219, 0.1)' // Optional subtle hover*/}
-      {/*          }*/}
-      {/*        }}*/}
-      {/*      >*/}
-      {/*        Contact Us*/}
-      {/*      </Button>*/}
-      
-      {/*    </Link>*/}
-      {/*    /!*<Link href="/login">*!/*/}
-      {/*    <Button*/}
-      {/*      onClick={handleClickOpen}*/}
-      {/*      sx={{*/}
-      {/*        px: 3,*/}
-      {/*        borderRadius: '20px !important',*/}
-      {/*        backgroundColor: '#c165a0',*/}
-      {/*        color: 'white'*/}
-      {/*      }}*/}
-      {/*    >*/}
-      {/*      Log In*/}
-      {/*    </Button>*/}
-      {/*    /!*</Link>*!/*/}
-      {/*  </Box>*/}
-      {/*</Box>*/}
       <Box
         // component="header"
         sx={{
@@ -289,7 +274,7 @@ export const LandingNav = () => {
           zIndex: 1100,
           // zIndex: (theme) => theme.zIndex.appBar,
           width: '100% !important',
-          position: 'sticky',
+          position: 'fixed',
           pt: 0,
           top: 0
         }}
@@ -309,18 +294,18 @@ export const LandingNav = () => {
               }}
             >
               <NextLink href="/" passHref legacyBehavior>
-                <Box sx={{width:250, height:'1005', display:'flex', alignItems:'center'}}>
-                <Box
-                  component="img"
-                  src={`${WEB_URL}/logo3.png`}
-                  alt="logo"
-                  sx={{
-                    // bgcolor: 'yellow',
-                    width:'50%',
-                    pb: 2,
-                    height: 'auto'
-                  }}
-                /></Box>
+                <Box sx={{ width: 250, height: '1005', display: 'flex', alignItems: 'center' }}>
+                  <Box
+                    component="img"
+                    src={`${WEB_URL}/logo3.png`}
+                    alt="logo"
+                    sx={{
+                      // bgcolor: 'yellow',
+                      width: '50%',
+                      pb: 2,
+                      height: 'auto'
+                    }}
+                  /></Box>
               </NextLink>
               <Typography
                 gutterBottom
@@ -338,7 +323,7 @@ export const LandingNav = () => {
                 Greetings Card
               </Typography>
               <Box sx={{
-                width:250,
+                width: 250,
                 // bgcolor: 'yellow',
                 display: 'flex',
                 justifyContent: 'center',
@@ -370,7 +355,11 @@ export const LandingNav = () => {
                     px: 3,
                     borderRadius: '20px !important',
                     backgroundColor: '#c165a0',
-                    color: 'white'
+                    color: 'white',
+                    '&:hover': {
+                      backgroundColor: '#c165a0',
+                      color: 'white'
+                    }
                   }}
                 >
                   Log In
@@ -443,31 +432,18 @@ export const LandingNav = () => {
                 </Button>
 
               </Link>
-              {/*<NextLink href="#contact" passHref scroll={true}>*/}
-              {/*  <Button*/}
-              {/*    variant="outlined"*/}
-              {/*    sx={{*/}
-              {/*      width: '100%',*/}
-              {/*      borderRadius: '20px !important',*/}
-              {/*      borderColor: '#333333 !important',*/}
-              {/*      color: '#dcdbdb', // Optional: button text color same as border*/}
-              {/*      '&:hover': {*/}
-              {/*        borderColor: '#dcdbdb', // Keeps same color on hover*/}
-              {/*        backgroundColor: 'rgba(220, 219, 219, 0.1)' // Optional subtle hover*/}
-              {/*      }*/}
-              {/*    }}*/}
-              {/*  >*/}
-              {/*    Contact Us*/}
-              {/*  </Button>*/}
-              {/*</NextLink>*/}
-              {/*<NextLink href="/login" passHref  legacyBehavior>*/}
+
               <Button
                 onClick={handleClickOpen}
                 sx={{
                   px: 3,
                   borderRadius: '20px !important',
                   backgroundColor: '#c165a0',
-                  color: 'white'
+                  color: 'white',
+                  '&:hover': {
+                    backgroundColor: '#c165a0',
+                    color: 'white'
+                  }
                 }}
               >
                 Log In
@@ -492,95 +468,149 @@ export const LandingNav = () => {
 
         >
           <DialogTitle sx={{ m: 0, p: 2, pb: '0 !important' }} id="customized-dialog-title">
-            Login<br/>
-            <Box sx={{ display: 'flex', width: '100%' }}>
-              <Typography color="text.secondary" variant="body2">
-                Don&apos;t have an account?&nbsp;
-                <Box
-                  onClick={handleRegisterClickOpen}
-                  component="span"
-                  sx={{ color: '#c165a0', cursor: 'pointer', display: 'inline' }}
-                >
-                  Register
+            <Box sx={{ width: '100%', typography: 'body1' }}>
+              <TabContext value={value}>
+                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                  <TabList onChange={handleChange} aria-label="lab API tabs example">
+                    <Tab label="Sign Up" value="1" />
+                    <Tab label="Sign In" value="2" />
+                    <IconButton
+                      aria-label="close"
+                      onClick={handleClose}
+                      sx={(theme) => ({
+                        position: 'absolute',
+                        right: 0,
+                        top: 3,
+                        color: theme.palette.grey[500]
+                      })}
+                    >
+                      <CloseIcon/>
+                    </IconButton>
+                  </TabList>
                 </Box>
-              </Typography>
+
+                <TabPanel value="1" sx={{ pl:'0 !important', pr:'0 !important'}}>
+                  <form
+                    noValidate
+                    onSubmit={registerFormik.handleSubmit}
+                  >
+                    <DialogContent sx={{ pt: '0 !important', pb: '0 !important' , pl:'0 !important', pr:'0 !important', width:'100%'}}>
+
+                      <Typography color="text.secondary" variant="body2" sx={{ pl:0.3 }}>
+                        Please provide sign up details.
+                        {/*<span style={{ color: '#c165a0', cursor: 'pointer' }}>Verify</span>*/}
+                      </Typography>
+                      <TextField
+                        sx={{ mt: 1 , p:0.3}}
+                        error={!!(registerFormik.touched.name && registerFormik.errors.name)}
+                        fullWidth
+                        helperText={registerFormik.touched.name && registerFormik.errors.name}
+                        label="Name"
+                        name="name"
+                        onBlur={registerFormik.handleBlur}
+                        onChange={registerFormik.handleChange}
+                        value={registerFormik.values.name}
+                      />
+                      <TextField
+                        sx={{ mt: 1 , mb:1,  p:0.3}}
+                        error={!!(registerFormik.touched.email && registerFormik.errors.email)}
+                        fullWidth
+                        helperText={registerFormik.touched.email && registerFormik.errors.email}
+                        label="Email Address"
+                        name="email"
+                        onBlur={registerFormik.handleBlur}
+                        onChange={registerFormik.handleChange}
+                        type="email"
+                        value={registerFormik.values.email}
+                      />
+
+                    </DialogContent>
+                    <DialogActions>
+                      {/*<Button autoFocus onClick={handleClose}>*/}
+                      <Button
+                        // fullWidth
+                        size="large"
+                        // sx={{ mt: 3 }}
+                        type="submit"
+                        //disabled button
+                        disabled={registerFormik.isSubmitting}
+                        variant="contained"
+                      >
+                        Register
+                      </Button>
+                      {/*</Button>*/}
+                    </DialogActions>
+                  </form>
+                </TabPanel>
+
+                <TabPanel value="2" sx={{ pl:0, pr:0}}>
+                  {/*Login<br/>*/}
+                  <Box sx={{ display: 'flex', width: '100%'}}>
+                    <Typography color="text.secondary" variant="body2" sx={{ pl:0.3 }}>
+                      Please provide your email to log in.
+                      {/*<span style={{ color: '#c165a0', cursor: 'pointer' }}>Verify</span>*/}
+                    </Typography>
+                  </Box>
+                  <form
+                    noValidate
+                    onSubmit={formik.handleSubmit}
+                  >
+                    <DialogContent dividers sx={{ pb: '0 !important', pt: '0 !important' , pl:'0 !important',pr:'0 !important',width:'100%', overflowY:'hidden'}}>
+                      <TextField
+                        sx={{ mt: 1, mb: 1, p:0.3 }}
+                        error={!!(formik.touched.email && formik.errors.email)}
+                        fullWidth
+                        helperText={formik.touched.email && formik.errors.email}
+                        label="Email Address"
+                        name="email"
+                        onBlur={formik.handleBlur}
+                        onChange={formik.handleChange}
+                        type="email"
+                        value={formik.values.email}
+                        InputLabelProps={{ shrink: true }}
+                      />
+                      {
+                        loading && <Box sx={{ textAlign: 'center', mt: 3 }}><CircularProgress/></Box>
+                      }
+                    </DialogContent>
+                    <DialogActions sx={{pr:'0 !important'}}>
+                      {/*<Button autoFocus onClick={handleClose}>*/}
+                      <Button
+                        // fullWidth
+                        size="large"
+                        sx={{
+                          '&:hover': {
+                            // borderColor: '#dcdbdb', // Keeps same color on hover
+                            backgroundColor: '#c165a0' // Optional subtle hover
+                          }
+                        }}
+                        type="submit"
+                        variant="contained"
+                        disabled={formik.isSubmitting}
+                      >
+                        Login
+                      </Button>
+                      {/*</Button>*/}
+                    </DialogActions>
+                  </form>
+
+
+                </TabPanel>
+              </TabContext>
             </Box>
+
           </DialogTitle>
-          <IconButton
-            aria-label="close"
-            onClick={handleClose}
-            sx={(theme) => ({
-              position: 'absolute',
-              right: 8,
-              top: 8,
-              color: theme.palette.grey[500]
-            })}
-          >
-            <CloseIcon/>
-          </IconButton>
-          <form
-            noValidate
-            onSubmit={formik.handleSubmit}
-          >
-            <DialogContent dividers sx={{ pb: '0 !important', pt: '0 !important' }}>
-              <TextField
-                sx={{ mt: 1 }}
-                error={!!(formik.touched.email && formik.errors.email)}
-                fullWidth
-                helperText={formik.touched.email && formik.errors.email}
-                label="Email Address"
-                name="email"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                type="email"
-                value={formik.values.email}
-              />
-              <TextField
-                sx={{ mt: 1, mb: 1 }}
-                error={!!(formik.touched.password && formik.errors.password)}
-                fullWidth
-                helperText={formik.touched.password && formik.errors.password}
-                label="Password"
-                name="password"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                type="password"
-                value={formik.values.password}
-              />
-              {
-                loading && <Box sx={{ textAlign: 'center', mt: 3 }}><CircularProgress/></Box>
-              }
-            </DialogContent>
-            <DialogActions>
-              {/*<Button autoFocus onClick={handleClose}>*/}
-              <Button
-                // fullWidth
-                size="large"
-                sx={{
-                  '&:hover': {
-                    // borderColor: '#dcdbdb', // Keeps same color on hover
-                    backgroundColor: '#c165a0' // Optional subtle hover
-                  }
-                }}
-                type="submit"
-                variant="contained"
-                disabled={formik.isSubmitting}
-              >
-                Login
-              </Button>
-              {/*</Button>*/}
-            </DialogActions>
-          </form>
+
+
         </BootstrapDialog>
       </React.Fragment>
 
-
-      {/*register*/}
+      {/*login verification*/}
       <React.Fragment>
         <BootstrapDialog
-          onClose={handleRegisterClose}
+          onClose={handleVerifyClose}
           aria-labelledby="customized-dialog-title"
-          open={registerOpen}
+          open={verifyOpen}
           PaperProps={{
             sx: {
               width: '100%',
@@ -589,93 +619,79 @@ export const LandingNav = () => {
           }}
         >
           <DialogTitle sx={{ m: 0, p: 2, pb: '0 !important' }} id="customized-dialog-title">
-            Register<br/> <Typography
-            color="text.secondary"
-            variant="body2"
-          >
-            Already have an account?
-            &nbsp;
-            <Box
-              onClick={handleClickOpen}
-              // component={NextLink}
-              // href="/login"
-              underline="hover"
-              variant="subtitle2"
-              style={{ color: '#c165a0', display: 'inline', cursor: 'pointer' }}
+            <Typography variant="h5" sx={{ mb: 1 }}> Two Factor Authentication</Typography>
+
+            <Typography
+              color="text.secondary"
+              variant="body2"
             >
-              Log in
-            </Box>
-          </Typography>
+              <Typography
+                color="text.secondary"
+                variant="body2"
+                sx={{
+                  mb: 1,
+                  width: '100%',
+                  whiteSpace: 'nowrap',   // prevent wrapping
+                  // overflow: 'hidden',     // hide overflow
+                  textOverflow: 'ellipsis', // optional: add ... if text is too long
+                  pl: 0
+                }}
+              >
+                Please enter the authentication code sent to your e-mail address.
+              </Typography>
+
+            </Typography>
           </DialogTitle>
-          <IconButton
-            aria-label="close"
-            onClick={handleRegisterClose}
-            sx={(theme) => ({
-              position: 'absolute',
-              right: 8,
-              top: 8,
-              color: theme.palette.grey[500]
-            })}
-          >
-            <CloseIcon/>
-          </IconButton>
+
           <form
             noValidate
-            onSubmit={registerFormik.handleSubmit}
+            onSubmit={loginvVeriformik.handleSubmit}
           >
-            <DialogContent sx={{ pt: '0 !important', pb: '0 !important' }}>
-              <TextField
-                sx={{ mt: 1 }}
-                error={!!(registerFormik.touched.name && registerFormik.errors.name)}
-                fullWidth
-                helperText={registerFormik.touched.name && registerFormik.errors.name}
-                label="Name"
-                name="name"
-                onBlur={registerFormik.handleBlur}
-                onChange={registerFormik.handleChange}
-                value={registerFormik.values.name}
-              />
-              <TextField
-                sx={{ mt: 1 }}
-                error={!!(registerFormik.touched.email && registerFormik.errors.email)}
-                fullWidth
-                helperText={registerFormik.touched.email && registerFormik.errors.email}
-                label="Email Address"
-                name="email"
-                onBlur={registerFormik.handleBlur}
-                onChange={registerFormik.handleChange}
-                type="email"
-                value={registerFormik.values.email}
-              />
-              <TextField
-                sx={{ mt: 1, mb: 1 }}
-                error={!!(registerFormik.touched.password && registerFormik.errors.password)}
-                fullWidth
-                helperText={registerFormik.touched.password && registerFormik.errors.password}
-                label="Password"
-                name="password"
-                onBlur={registerFormik.handleBlur}
-                onChange={registerFormik.handleChange}
-                type="password"
-                value={registerFormik.values.password}
-              />
-
+            <DialogContent dividers sx={{ pb: '0 !important', pt: '0 !important' }}>
+              <Stack spacing={3}>
+                <TextField
+                  sx={{ pt: 2 }}
+                  error={!!(loginvVeriformik.touched.code && loginvVeriformik.errors.code)}
+                  fullWidth
+                  helperText={loginvVeriformik.touched.code && loginvVeriformik.errors.code}
+                  label="Enter Authentication Code"
+                  name="code"
+                  onBlur={loginvVeriformik.handleBlur}
+                  onChange={loginvVeriformik.handleChange}
+                  type="text"
+                  value={loginvVeriformik.values.code}
+                  InputLabelProps={{ shrink: true }}
+                />
+              </Stack>
+              {
+                loading && <Box sx={{ textAlign: 'center', mt: 5 }}><CircularProgress/></Box>
+              }
+              {loginvVeriformik.errors.submit && (
+                <Typography
+                  color="error"
+                  sx={{ mt: 3 }}
+                  variant="body2"
+                >
+                  {loginvVeriformik.errors.submit}
+                </Typography>
+              )}
+              <DialogActions>
+                <Button
+                  size="large"
+                  sx={{
+                    '&:hover': {
+                      // borderColor: '#dcdbdb', // Keeps same color on hover
+                      backgroundColor: '#c165a0' // Optional subtle hover
+                    }
+                  }}
+                  type="submit"
+                  variant="contained"
+                  disabled={loginvVeriformik.isSubmitting}
+                >
+                  Verify
+                </Button>
+              </DialogActions>
             </DialogContent>
-            <DialogActions>
-              {/*<Button autoFocus onClick={handleClose}>*/}
-              <Button
-                // fullWidth
-                size="large"
-                // sx={{ mt: 3 }}
-                type="submit"
-                //disabled button
-                disabled={registerFormik.isSubmitting}
-                variant="contained"
-              >
-                Register
-              </Button>
-              {/*</Button>*/}
-            </DialogActions>
           </form>
         </BootstrapDialog>
       </React.Fragment>

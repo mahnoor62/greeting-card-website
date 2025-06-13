@@ -13,13 +13,18 @@ import { Toaster } from 'react-hot-toast';
 import '../../public/style.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import {useEffect } from 'react';
+import { useEffect } from 'react';
+
 const clientSideEmotionCache = createEmotionCache();
 const WEB_URL = process.env.NEXT_PUBLIC_WEB_URL;
+import { LoginModalProvider } from '../contexts/loginContext';
+import { LoginVerifyProvider } from '../contexts/verifyContext';
 import Box from '@mui/material/Box';
+
 const SplashScreen = () => null;
 
 const App = (props) => {
+  // const {LoginModalProvider } = LoginModalProvider();
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   useNProgress();
@@ -45,50 +50,57 @@ const App = (props) => {
         />
       </Head>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <AuthProvider>
-          <Toaster/>
-          <ThemeProvider theme={theme}>
-            <CssBaseline/>
-            <AuthConsumer>
-              {
-                (auth) => auth.isLoading
-                  ? <SplashScreen/>
-                  : getLayout(<Component {...pageProps} />)
-              }
-            </AuthConsumer>
-            {/*<AuthConsumer>*/}
-            {/*  {(auth) =>*/}
-            {/*    auth.isLoading ? (*/}
-            {/*      <SplashScreen />*/}
-            {/*    ) : (*/}
-            {/*      <Box*/}
-            {/*        sx={{*/}
-            {/*          width: '100%',*/}
-            {/*          minHeight: '100vh',*/}
-            {/*          backgroundImage: {*/}
-            {/*            xs: `url(${WEB_URL}/portrate.png)`,*/}
-            {/*            md: `url(${WEB_URL}/bg1.png)`,*/}
-            {/*          },*/}
-            {/*          backgroundSize: 'cover',*/}
-            {/*          backgroundPosition: 'center',*/}
-            {/*          backgroundRepeat: 'no-repeat',*/}
-            {/*        }}*/}
-            {/*      >*/}
-            {/*        {getLayout(<Component {...pageProps} />)}*/}
-            {/*      </Box>*/}
-            {/*    )*/}
-            {/*  }*/}
-            {/*</AuthConsumer>*/}
+        <LoginModalProvider>
+          <LoginVerifyProvider>
+            <AuthProvider>
+              <Toaster/>
+              <ThemeProvider theme={theme}>
+                <CssBaseline/>
 
-          </ThemeProvider>
-        </AuthProvider>
+                <AuthConsumer>
+
+                  {
+                    (auth) => auth.isLoading
+                      ? <SplashScreen/>
+                      : getLayout(<Component {...pageProps} />)
+                  }
+
+                </AuthConsumer>
+
+                {/*<AuthConsumer>*/}
+                {/*  {(auth) =>*/}
+                {/*    auth.isLoading ? (*/}
+                {/*      <SplashScreen />*/}
+                {/*    ) : (*/}
+                {/*      <Box*/}
+                {/*        sx={{*/}
+                {/*          width: '100%',*/}
+                {/*          minHeight: '100vh',*/}
+                {/*          backgroundImage: {*/}
+                {/*            xs: `url(${WEB_URL}/portrate.png)`,*/}
+                {/*            md: `url(${WEB_URL}/bg1.png)`,*/}
+                {/*          },*/}
+                {/*          backgroundSize: 'cover',*/}
+                {/*          backgroundPosition: 'center',*/}
+                {/*          backgroundRepeat: 'no-repeat',*/}
+                {/*        }}*/}
+                {/*      >*/}
+                {/*        {getLayout(<Component {...pageProps} />)}*/}
+                {/*      </Box>*/}
+                {/*    )*/}
+                {/*  }*/}
+                {/*</AuthConsumer>*/}
+
+              </ThemeProvider>
+            </AuthProvider>
+          </LoginVerifyProvider>
+        </LoginModalProvider>
       </LocalizationProvider>
     </CacheProvider>
   );
 };
 
 export default App;
-
 
 // NEXT_PUBLIC_APP_NAME="Greetings Card"
 // NEXT_PUBLIC_API_BASE_URL=https://greetings-card-apis.tecshield.net

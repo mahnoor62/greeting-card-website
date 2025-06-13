@@ -168,7 +168,7 @@ const AboutUs = () => {
                 src={`${WEB_URL}/trb.gif`}
                 alt="top right balloon"
                 // sx={{ position: 'absolute', top: {md: '25%', xs:'25%' }, right: {md: - 150, xs:-30 }, width: {md: '30%', xs:'50%' }, zIndex: 4 }}
-                sx={{ position: 'absolute', top: {md: '40%', xs:'30%' }, right: {md: 100, xs:120 }, width: {md: '30%', xs:'40%' }, zIndex: 4 }}
+                sx={{ position: 'absolute', top: {md: '35%', xs:'27%', lg:'34%' }, right: {md: 100, xs:120 }, width: {md: '30%', xs:'40%' }, zIndex: 4 }}
               />
               {/*<Box*/}
               {/*  data-aos="zoom-in-up"*/}
@@ -300,7 +300,7 @@ const AboutUs = () => {
                 component="img"
                 src={`${WEB_URL}/trb.gif`}
                 alt="top right balloon"
-                sx={{ position: 'absolute', top: '45%', right:'8%', width: '30%', zIndex: 4 }}
+                sx={{ position: 'absolute', top: '42%', right:'8%', width: '30%', zIndex: 4 }}
               />
 
               {/*<Box*/}
@@ -428,7 +428,7 @@ const AboutUs = () => {
                 component="img"
                 src={`${WEB_URL}/trb.gif`}
                 alt="top right balloon"
-                sx={{ position: 'absolute', top: '40%', right:'12%', width: '30%', zIndex: 4 }}
+                sx={{ position: 'absolute', top: '36%', right:'12%', width: '30%', zIndex: 4 }}
               />
 
               {/*<Box*/}

@@ -5,7 +5,7 @@ import { Box, Divider, MenuItem, MenuList, Popover, Typography } from '@mui/mate
 import { useAuth } from 'src/hooks/use-auth';
 
 export const AccountPopover = (props) => {
-  const { anchorEl, onClose, open } = props;
+  const { anchorEl, onClose, open, id } = props;
   const router = useRouter();
   const auth = useAuth();
 
@@ -18,16 +18,18 @@ export const AccountPopover = (props) => {
     [onClose, auth, router]
   );
 
+
   return (
     <Popover
+      id={id}
       anchorEl={anchorEl}
       anchorOrigin={{
         vertical: 'bottom',
-        horizontal: 'left'
+        horizontal: 'center',
       }}
       transformOrigin={{
         vertical: 'top',
-        horizontal: 'left'
+        horizontal: 'center',
       }}
       onClose={onClose}
       open={open}
@@ -71,6 +73,7 @@ export const AccountPopover = (props) => {
 };
 
 AccountPopover.propTypes = {
+  id: PropTypes.string,
   anchorEl: PropTypes.any,
   onClose: PropTypes.func,
   open: PropTypes.bool.isRequired

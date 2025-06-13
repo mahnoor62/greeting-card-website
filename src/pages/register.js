@@ -33,64 +33,64 @@ const Page = () => {
   const auth = useAuth();
   const [loading, setLoading] = useState(false);
   const { signUp, user } = useAuth();
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
+  //
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const formik = useFormik({
+  //   initialValues: {
+  //     name: '',
+  //     email: '',
+  //     password: '',
+  //     submit: null
+  //   },
+  //   validationSchema: Yup.object({
+  //     name: Yup.string().required('Name is required'),
+  //     email: Yup.string().required('Email is required').email('Email is invalid'),
+  //     password: Yup.string().required('Password is required')
+  //   }),
+  //   onSubmit: async (values, helpers) => {
+  //     const loading = toast.loading('Registration in process...');
+  //     setLoading(true);
+  //     try {
+  //       await signUp({
+  //         name: values.name,
+  //         email: values.email,
+  //         password: values.password
+  //       });
+  //       toast.success('Check your email for verification');
+  //       formik.resetForm(); // Reset the form immediately
+  //     } catch (err) {
+  //       toast.error(err.message);
+  //       formik.resetForm();
+  //       console.error(err);
+  //       if (isMounted()) {
+  //         helpers.setStatus({ success: false });
+  //         helpers.setErrors({ submit: err.message });
+  //         helpers.setSubmitting(false);
+  //       }
+  //     }
+  //     toast.dismiss(loading);
+  //     setLoading(false);
+  //
+  //   }
+  // });
 
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      email: '',
-      password: '',
-      submit: null
-    },
-    validationSchema: Yup.object({
-      name: Yup.string().required('Name is required'),
-      email: Yup.string().required('Email is required').email('Email is invalid'),
-      password: Yup.string().required('Password is required')
-    }),
-    onSubmit: async (values, helpers) => {
-      const loading = toast.loading('Registration in process...');
-      setLoading(true);
-      try {
-        await signUp({
-          name: values.name,
-          email: values.email,
-          password: values.password
-        });
-        toast.success('Check your email for verification');
-        formik.resetForm(); // Reset the form immediately
-      } catch (err) {
-        toast.error(err.message);
-        formik.resetForm();
-        console.error(err);
-        if (isMounted()) {
-          helpers.setStatus({ success: false });
-          helpers.setErrors({ submit: err.message });
-          helpers.setSubmitting(false);
-        }
-      }
-      toast.dismiss(loading);
-      setLoading(false);
-
-    }
-  });
-
-  const handleLoginClick = () => {
-    router.push('/login?dialog=true'); // Yeh query use karenge login page me
-  };
-
-  useEffect(() => {
-    if (router.query.dialog === 'true') {
-      setOpen(true);
-      router.replace('/register', undefined, { shallow: true }); // URL saaf karne ke liye
-    }
-  }, [router.query]);
+  // const handleLoginClick = () => {
+  //   router.push('/login?dialog=true'); // Yeh query use karenge login page me
+  // };
+  //
+  // useEffect(() => {
+  //   if (router.query.dialog === 'true') {
+  //     setOpen(true);
+  //     router.replace('/register', undefined, { shallow: true }); // URL saaf karne ke liye
+  //   }
+  // }, [router.query]);
 
   return (
     <>
